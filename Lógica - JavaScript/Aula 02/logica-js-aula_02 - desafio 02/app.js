@@ -1,6 +1,6 @@
-let num = prompt("Digite um número");
+let num = prompt('Digite um número');
 if (num > 0) {
-    alert(num + " é positivo.")
+    alert(num + ' é positivo.')
 } else {
-    alert(num + " é negativo.")
+    alert(num + ' é negativo.')
 }
