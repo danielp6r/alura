@@ -1,0 +1,53 @@
+1 - Crie uma conta no GitHub
+https://github.com/danielp6r
+
+2 - Crie um repositório para um projeto pessoal.
+https://github.com/danielp6r/alura
+
+3 - Faça a instalação do Git
+ https://git-scm.com/downloads
+
+4 - Crie um repositório localmente para o seu projeto pessoal
+No VS Code ou em qualquer outro terminal, primeiro, navegue até o diretório correto onde deseja criar o repositório.
+Em seguida, execute o comando:
+git init
+Isso inicializa um repositório Git dentro da pasta escolhida.
+A partir desse momento, o Git começará a rastrear as alterações no projeto. 
+
+5 - Adicione alguns arquivos no seu repositório local
+Após criar o repositório, adicione os arquivos ao controle de versão utilizando o comando:
+git add .
+Esse comando adiciona todos os arquivos da pasta ao repositório, preparando-os para o commit.
+
+6 - Faça o commit das alterações
+Agora que os arquivos foram adicionados, salve as alterações no repositório com:
+git commit -m "mensagem"
+O commit registra todas as mudanças adicionadas anteriormente com git add, garantindo que elas fiquem armazenadas no histórico do Git.
+
+
+7 - Configure a identidade do autor do commit.
+Antes de realizar commits, você precisa configurar seu nome e e-mail para que o Git possa associar os commits a você. Comandos:
+git config --global user.email "seuemailaqui@exemplo.com"
+git config --global user.name "seu nome aqui"
+O comando git config --global user.email define o seu e-mail associado aos commits.
+O comando git config --global user.name define o seu nome associado aos commits.
+Essas configurações são globais, ou seja, serão usadas em todos os repositórios no seu computador. Caso precise de configurações específicas para um repositório, basta omitir o --global e rodar os comandos dentro da pasta do repositório
+
+8 - Crie a branch Main
+Para criar a branch principal chamada main, utilize o seguinte comando:
+git branch main
+
+9 - Realize a conexão do seu repositório local com o remoto
+Para conectar seu repositório local ao remoto via SSH, digite o seguinte comando:
+git remote add origin git@github.com:seunomedeusuario/seu-repositorio.git
+
+
+10 - Envie as alterações no repositório local para o remoto
+Para enviar suas alterações do repositório local para o repositório remoto, utilize o comando:
+git push -u origin main
+
+11 - Utilize o comando git status
+Esse comando verifica o estado atual do repositório, mostra os arquivos modificados, não rastreados, e outras informações.
+
+
+
