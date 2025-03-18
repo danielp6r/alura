@@ -24,7 +24,6 @@ Agora que os arquivos foram adicionados, salve as alterações no repositório c
 git commit -m "mensagem"
 O commit registra todas as mudanças adicionadas anteriormente com git add, garantindo que elas fiquem armazenadas no histórico do Git.
 
-
 7 - Configure a identidade do autor do commit.
 Antes de realizar commits, você precisa configurar seu nome e e-mail para que o Git possa associar os commits a você. Comandos:
 git config --global user.email "seuemailaqui@exemplo.com"
@@ -40,7 +39,6 @@ git branch main
 9 - Realize a conexão do seu repositório local com o remoto
 Para conectar seu repositório local ao remoto via SSH, digite o seguinte comando:
 git remote add origin git@github.com:seunomedeusuario/seu-repositorio.git
-
 
 10 - Envie as alterações no repositório local para o remoto
 Para enviar suas alterações do repositório local para o repositório remoto, utilize o comando:
