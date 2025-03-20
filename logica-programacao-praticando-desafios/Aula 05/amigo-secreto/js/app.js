@@ -26,6 +26,11 @@ function adicionar() {
 }
 
 function sortear() {
+    if (amigos.length < 4) {
+        alert('É necessário no mínimo 4 pessoas.');
+        return;
+    }
+
     embaralha(amigos);
     let sorteio = document.getElementById('lista-sorteio');
 
