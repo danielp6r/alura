@@ -1,0 +1,1 @@
+nome=Open Season', anoDeLancamento=2006, duração=86
