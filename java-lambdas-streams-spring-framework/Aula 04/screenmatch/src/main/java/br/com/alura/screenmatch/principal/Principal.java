@@ -75,13 +75,13 @@ public class Principal {
 
         episodios.forEach(System.out::println);
 
-        //System.out.println("Digite o trecho do título: ");
+        System.out.println("Digite o trecho do título: ");
         var trechoTitulo = scanner.nextLine();
         Optional<Episodio> episodioBuscado = episodios.stream()
                 .filter(e -> e.getTitulo().toUpperCase().contains(trechoTitulo.toUpperCase()))
                 .findFirst();
         if (episodioBuscado.isPresent()) {
-            System.out.println("Episódio encontrado: ");
+            System.out.println("Episódio encontrado: " + episodioBuscado.get().getTitulo());
             System.out.println("Temporada " + episodioBuscado.get().getTemporada());
         } else {
             System.out.println("Episódio não encontrado.");
@@ -102,13 +102,14 @@ public class Principal {
 //                            "Episódio: " + e.getTitulo() +
 //                            "Data de lançamento : " + e.getDataLancamento().format(formatador)
 //                ));
-
+        System.out.println("Avaliações por temporada:");
         Map<Integer, Double> avaliacoesPorTemporada = episodios.stream()
                 .filter(e -> e.getAvaliacao() > 0.0)
                 .collect(Collectors.groupingBy(Episodio::getTemporada,
                         Collectors.averagingDouble(Episodio::getAvaliacao)));
         System.out.println(avaliacoesPorTemporada);
 
+        System.out.println("Estatísticas:");
         DoubleSummaryStatistics est = episodios.stream()
                 .filter(e -> e.getAvaliacao() > 0.0)
                 .collect(Collectors.summarizingDouble(Episodio::getAvaliacao));
