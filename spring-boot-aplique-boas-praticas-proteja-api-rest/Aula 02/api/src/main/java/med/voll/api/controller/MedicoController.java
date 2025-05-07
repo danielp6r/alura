@@ -4,8 +4,8 @@ import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import med.voll.api.dto.DadosDetalhamentoMedico;
 import med.voll.api.dto.DadosListagemMedico;
-import med.voll.api.dto.dadosAtualizacaoMedico;
-import med.voll.api.dto.dadosCadastroMedico;
+import med.voll.api.dto.DadosAtualizacaoMedico;
+import med.voll.api.dto.DadosCadastroMedico;
 import med.voll.api.model.Medico;
 import med.voll.api.repository.MedicoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +25,7 @@ public class MedicoController {
 
     @Transactional
     @PostMapping
-    public ResponseEntity cadastrar(@RequestBody @Valid dadosCadastroMedico dados, UriComponentsBuilder uriBuilder) {
+    public ResponseEntity cadastrar(@RequestBody @Valid DadosCadastroMedico dados, UriComponentsBuilder uriBuilder) {
         var medico = new Medico(dados);
         repository.save(medico);
 
@@ -46,7 +46,7 @@ public class MedicoController {
 
     @PutMapping
     @Transactional
-    public ResponseEntity atualizar(@RequestBody @Valid dadosAtualizacaoMedico dados) {
+    public ResponseEntity atualizar(@RequestBody @Valid DadosAtualizacaoMedico dados) {
         var medico = repository.getReferenceById(dados.id());
         medico.atualizarInformacoes(dados);
 
