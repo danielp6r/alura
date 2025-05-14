@@ -1,0 +1,27 @@
+no terminal:
+trocar para o diretório target, no meu caso já estou no diretório to projeto>
+
+dir  target
+
+comando para verificar a versão do java, no caso deve ser 23, que é a versão do projeto>
+
+java -version
+
+para executar com o profile default>
+
+java -jar .\target\api-0.0.1-SNAPSHOT.jar 
+
+Em produção executar com o profile prod, no caso vai dar erro porque não foram configuradas as variáveis de ambiente>
+
+java "-Dspring.profiles.active=prod" -jar .\target\api-0.0.1-SNAPSHOT.jar
+
+Passando as variáveis de ambiente, no meu caso>
+
+java "-Dspring.profiles.active=prod" "-Dspring.datasource.url=jdbc:mysql://localhost/vollmed_api" "-Dspring.datasource.username=root" "-Dspring.datasource.password=12345" -jar .\target\api-0.0.1-SNAPSHOT.jar
+
+
+
+Observação: o banco de dados não necessariamente estará rodando dentro do mesmo servidor. Pode ser que você configure em outro servidor; nesse caso, a URL do banco de dados não seria "localhost" como no exemplo exibido anteriormente, mas sim o endereço IP do servidor onde você instalou uma SQL.
+
+Nas variáveis USERNAME e PASSWORD, provavelmente não usaríamos "root" e "12345", pois é uma senha insegura. O ideal é gerar username e senha aleatórios, então passaríamos os parâmetros conforme a instalação do servidor onde está rodando o MySQL.
+
