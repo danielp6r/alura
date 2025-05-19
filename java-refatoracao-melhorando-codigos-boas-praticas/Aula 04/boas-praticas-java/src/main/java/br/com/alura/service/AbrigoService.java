@@ -1,6 +1,5 @@
 package br.com.alura.service;
 
-
 import br.com.alura.client.ClientHttpConfiguration;
 import br.com.alura.domain.Abrigo;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -25,8 +24,17 @@ public class AbrigoService {
         String responseBody = response.body();
         Abrigo [] abrigos = new ObjectMapper().readValue(responseBody, Abrigo[].class);
         List<Abrigo> abrigoList = Arrays.stream(abrigos).toList();
+        if (abrigoList.isEmpty()) {
+            System.out.println("Não há abrigos cadastrados");
+        } else {
+            mostrarAbrigos(abrigoList);
+        }
+
+    }
+
+    private void mostrarAbrigos(List<Abrigo> abrigos) {
         System.out.println("Abrigos cadastrados:");
-        for (Abrigo abrigo : abrigoList) {
+        for (Abrigo abrigo : abrigos) {
             long id = abrigo.getId();
             String nome = abrigo.getNome();
             System.out.println(id +" - " +nome);
