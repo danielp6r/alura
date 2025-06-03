@@ -1,0 +1,65 @@
+{
+	"info": {
+		"_postman_id": "0a96aa78-bcc8-415c-b609-c49fc3ff3a86",
+		"name": "Biblioteca",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "45207428",
+		"_collection_link": "https://daniel-3281473.postman.co/workspace/Daniel's-Workspace~5e4da7ec-e46e-4e1e-8a4b-d139b8fad9c2/collection/45207428-0a96aa78-bcc8-415c-b609-c49fc3ff3a86?action=share&source=collection_link&creator=45207428"
+	},
+	"item": [
+		{
+			"name": "02 Atualiza Titulo",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"titulo\": \"livro com nome alterado\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/livros/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"livros",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "03 Teste Busca",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost:8080/livros/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"livros",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
