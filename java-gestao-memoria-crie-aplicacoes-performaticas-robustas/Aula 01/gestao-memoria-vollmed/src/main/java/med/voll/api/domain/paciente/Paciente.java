@@ -16,6 +16,7 @@ import java.util.Objects;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
+@EqualsAndHashCode(of = "id")
 public class Paciente {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -61,6 +62,6 @@ public class Paciente {
     }
 
     public List<Consulta> consultas(){
-        return consultas();
+        return consultas;
     }
 }

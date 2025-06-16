@@ -9,12 +9,14 @@ import med.voll.api.domain.medico.Medico;
 import med.voll.api.domain.paciente.Paciente;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 @Table(name = "consultas")
 @Entity(name = "Consulta")
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
+@EqualsAndHashCode
 public class Consulta {
 
     @Id
@@ -46,5 +48,20 @@ public class Consulta {
                 ", paciente=" + paciente +
                 ", data=" + data +
                 '}';
+    }
+
+    //As demais classes model serão anotadas com @EqualsAndHashCode(of="id")
+    //Nesse caso, para fins de exemplificação, vou deixar criado os métodos na sequencia:
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Consulta consulta = (Consulta) o;
+        return Objects.equals(id, consulta.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(id);
     }
 }
