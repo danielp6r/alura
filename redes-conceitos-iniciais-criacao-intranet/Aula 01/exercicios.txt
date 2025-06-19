@@ -1,0 +1,18 @@
+1 - Teste a conectividade do seu computador com o servidor que armazena a plataforma da Alura.
+no cmd>
+ping www.alura.com.br
+
+2 - Verifique as direções que mensagens enviadas do seu computador para a plataforma da Alura seguem.
+tracert www.alura.com.br
+
+3 - Teste a conectividade do seu computador com a página www.utwente.nl.
+ping www.utwente.nl
+
+4 - Verifique as direções que mensagens enviadas do seu computador para o site www.utwente.nl seguem.
+tracert www.utwente.nl
+
+5 - Analise a diferença nas respostas obtidas. Como você a explica?
+Conexão com a Alura -> bem sucedida.
+
+O site da UTwente bloqueia ICMP, que é o protocolo usado pelos comandos ping e tracert; por isso o ping falha, mas o site pode estar acessível via HTTP normalmente.
+
