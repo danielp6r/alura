@@ -1,0 +1,17 @@
+Resumo preciso do comportamento esperado:
+
+Mesma sub-rede (ex.: 192.168.0.x /24):
+
+PCs comunicam-se diretamente via hub, ping responde normalmente.
+
+Gateway é irrelevante para essa comunicação local.
+
+Sub-redes diferentes (ex.: 192.168.1.x, 192.168.2.x, etc, com máscara 255.255.255.0):
+
+PCs interpretam que os IPs estão em redes diferentes.
+
+Tentam encaminhar para gateway para comunicação (que não existe/configurado).
+
+Hub não faz roteamento, só repassa pacotes.
+
+Resultado: ping falha, não há comunicação.
