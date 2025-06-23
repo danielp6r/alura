@@ -1,0 +1,29 @@
+Atividade 1
+
+    Abra o Wireshark e inicie a captura.
+    Execute um teste de ping (ping alura.com.br) e observe os pacotes ICMP capturados.
+    Analise os resultados para entender o tráfego ICMP e verificar os tempos de resposta.
+
+Atividade 2
+
+    Abra o Wireshark e inicie a captura.
+    Acesse um site seguro no navegador (HTTPS) e navegue por algumas páginas.
+    Analise os pacotes capturados para observar como o protocolo TLS/SSL é utilizado para criptografar a comunicação.
+
+Atividade 3
+
+    Inicie o Wireshark antes de enviar ou receber e-mails.
+    Envie e receba e-mails normalmente.
+    Analise os pacotes capturados para entender como os protocolos de e-mail, como SMTP ou IMAP, são utilizados na comunicação.
+
+Atividade 4
+
+    Abra um terminal ou prompt de comando.
+    Execute o comando nslookup www.alura.com.br
+    Analise os resultados para identificar o endereço IP associado à plataforma da Alura.
+
+Atividade 5
+
+    Abra um terminal ou prompt de comando.
+    Execute o comando nslookup www.youtube.com
+    Analise os resultados para identificar o endereço IP associado ao serviço de armazenamento do YouTube
