@@ -1,0 +1,23 @@
+Atividade 1
+
+    Selecione um roteador e três computadores no Cisco Packet Tracer.
+    Conecte os computadores às interfaces do roteador.
+
+Atividade 2
+
+    Configure endereços IP diferentes nas interfaces do roteador para representar três redes distintas.
+    Atribua a cada computador um endereço IP na mesma faixa da respectiva rede da interface do roteador.
+
+Atividade 3
+
+    Configure os default gateways nos computadores para apontar para as interfaces do roteador.
+
+Atividade 4
+
+    Execute o comando ping de cada computador para os outros dois.
+    Verifique a conectividade entre os computadores, garantindo que a comunicação ocorra através do roteador.
+
+Atividade 5
+
+    No modo simulação do Cisco Packet Tracer, observe os pacotes enquanto são enviados entre os computadores.
+    Repare o protocolo ICMP utilizado no teste de conectividade e observe também o processo de roteamento.
