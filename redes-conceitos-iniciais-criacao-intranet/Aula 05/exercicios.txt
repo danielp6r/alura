@@ -1,0 +1,30 @@
+
+
+Atividade 1
+
+    A correta interligação física entre os dispositivos é crucial para garantir uma boa comunicação.
+    Dessa forma, posicione um roteador no centro da topologia e conecte três computadores e dois servidores às três interfaces do roteador selecionado usando switches.
+    Verifique se todos os dispositivos estão fisicamente interligados adequadamente.
+
+Atividade 2
+
+    Configure o roteador para fornecer IPs automaticamente através do DHCP para os três computadores.
+    Atribua IPs estáticos aos servidores, garantindo que cada um esteja em uma rede diferente.
+    Lembre-se de garantir que os IPs estejam dentro de faixas de endereços apropriadas para cada rede.
+
+Atividade 3
+
+    Configure o default gateway em cada computador para ser o endereço IP da interface correspondente do roteador.
+    Garanta que os servidores tenham rotas estáticas para as redes dos computadores, utilizando o roteador como gateway padrão.
+
+Atividade 4
+
+    No servidor selecionado para armazenar a página web, realize as seguintes instruções: configure a página HTTP intranet.com.
+    Configure o servidor restante como DNS, estabelecendo a correspondência entre o endereço IP de armazenamento da página da intranet e o seu respectivo nome de domínio (intranet.com).
+
+Atividade 5
+
+    Teste a conectividade entre os computadores e servidores usando o comando ping.
+    Analise os resultados obtidos. Casa encontre problemas na conecitividade, verifique as conexões e configurações realizadas anteriormente.
+    Por fim, em um computador, abra um navegador e acesse http://intranet.com. A página interna que você configurou no servidor web deve ser carregada corretamente.
+
