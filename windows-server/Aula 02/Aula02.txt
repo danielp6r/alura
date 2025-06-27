@@ -1,0 +1,85 @@
+Configuração Inicial do Windows Server 2012 – Aula 2 
+
+Usar sempre a mesma senha A1! para não ter que lembrar mais senhas...
+
+1. Criar atalho para o Gerenciador de Servidores
+Acesse:
+Painel de Controle > Ferramentas Administrativas
+
+Arraste o atalho de Gerenciador de Servidores para a área de trabalho
+
+Motivo: É utilizado com frequência para administração
+
+2. Instalar Funções e Recursos
+Acesse o Gerenciador de Servidores
+
+Menu lateral:
+Gerenciar > Adicionar Funções e Recursos
+
+Etapas:
+Tipo de Instalação:
+
+Selecionar Instalação baseada em função ou recurso
+
+Servidor de destino:
+
+Usar a seleção padrão (servidor local)
+
+Funções do Servidor:
+
+Marcar a opção:
+✅ Serviços de Domínio do Active Directory (AD DS)
+
+Continuar clicando em Próximo e depois Instalar
+
+❗ O AD DS é fundamental para gerenciamento centralizado de usuários, permissões e políticas de rede. Sem ele, não é possível criar um controlador de domínio ou gerenciar DNS da forma adequada.
+
+Caso precise Desinstalar Funções/Recurso
+Acesse novamente:
+Gerenciar > Remover Funções e Recursos
+
+3. Promover o Servidor a Controlador de Domínio
+Após a instalação do AD DS, surgirá uma notificação no Gerenciador:
+
+Clique em “Promover este servidor a controlador de domínio”
+
+Etapas de promoção:
+Selecionar:
+✅ Adicionar uma nova floresta
+
+Nome do domínio raiz:
+
+Exemplo utilizado: daniel.srv
+
+Sufixo .srv indica claramente que se trata de um domínio/servidor
+
+Continuar com as configurações padrão até finalizar a instalação
+
+4. Conceitos abordados
+Domínio: Conjunto de computadores gerenciados centralmente
+
+Floresta (Forest): Estrutura lógica que pode conter múltiplos domínios
+
+Servidor de Domínio (Domain Controller):
+Máquina responsável por autenticação, políticas e controle centralizado da rede (usuários, permissões, etc.)
+
+🗒️ Em ambientes com muitos computadores (ex: 100+), é impraticável configurar usuário por máquina. O domínio centraliza essa administração.
+
+5. Configurar IP Fixo para o Servidor
+Acesse:
+Painel de Controle > Central de Rede > Alterar configurações do adaptador
+
+Clique com botão direito na interface de rede → Propriedades
+
+Selecione: Protocolo TCP/IPv4 > Propriedades
+
+Configuração manual usada:
+Endereço IP: 192.168.1.5
+
+Máscara de Sub-rede: 255.255.255.0
+
+Gateway: (usar o da rede local, ex: 192.168.1.1)
+
+DNS preferencial: 127.0.0.1 (o próprio servidor)
+
+❗ O IP deve ser fixo, pois o servidor precisa ser sempre localizável para autenticação e resolução DNS.
