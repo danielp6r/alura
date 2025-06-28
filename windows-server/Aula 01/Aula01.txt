@@ -1,0 +1,102 @@
+Instalação do Windows Server 2012 na VirtualBox
+Pré-requisitos:
+VirtualBox instalado no host
+
+ISO do Windows Server 2012 baixada
+
+Chave de instalação: R9N79-23MWD-MBP9B-KHF8Q-C36WX
+
+Senha de administrador: A1!
+
+Passos:
+1. Criar nova Máquina Virtual
+Nome: Windows Server 2012
+
+Tipo: Microsoft Windows
+
+Versão: Windows 2012 (64-bit)
+
+2. Memória RAM
+Mínimo: 2048 MB
+
+Ideal: 4096 MB ou mais
+
+3. Disco Rígido
+Criar disco do tipo VDI
+
+Tamanho: 40 GB (mínimo), dinamicamente alocado
+
+4. Processador
+Acesse: Configurações > Sistema > Processador
+
+Atribua 2 CPUs
+
+Marque a opção Habilitar PAE/NX
+
+5. Sistema (Ordem de Boot)
+Ordem:
+
+Óptico (para ISO)
+
+Disco Rígido
+
+Desabilite Disquete
+
+6. Aceleração
+Ative:
+
+VT-x/AMD-V
+
+Aninhamento de páginas (Nested Paging)
+
+7. Vídeo
+Memória de Vídeo: pelo menos 64 MB
+
+Habilitar aceleração 3D (opcional)
+
+8. Armazenamento
+Clique em Controladora IDE > Vazio
+
+Clique no ícone de disco → Selecionar um arquivo de disco
+
+Selecione a ISO do Windows Server 2012
+
+9. Rede
+Modo NAT: acesso à internet isolado
+
+Modo Bridge: IP na mesma rede do host (útil para simulações de domínio)
+
+10. USB (opcional)
+Habilitar USB 2.0, se necessário
+
+Instalação do Sistema Operacional
+Inicie a VM.
+
+Boot pela ISO.
+
+Siga o assistente de instalação:
+
+Escolha idioma, layout de teclado e fuso horário
+
+Clique em Instalar agora
+
+Digite a chave: R9N79-23MWD-MBP9B-KHF8Q-C36WX
+
+Escolha edição adequada (Datacenter, Standard, com GUI ou Core)
+
+Tipo de instalação: Personalizada
+
+Selecione o disco virtual (único disponível)
+
+Aguarde a cópia e reinicializações
+
+Senha de Administrador
+Ao solicitar, defina a senha: A1!
+
+Acesso ao sistema
+Para logar após boot:
+
+Vá no menu da VM:
+Máquina > Inserir Ctrl-Alt-Del
+
+Ou, dentro da VM, use o teclado virtual (Ease of Access > On-Screen Keyboard) e pressione Ctrl + Alt + Del virtualmente
