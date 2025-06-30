@@ -100,3 +100,53 @@ Vá no menu da VM:
 Máquina > Inserir Ctrl-Alt-Del
 
 Ou, dentro da VM, use o teclado virtual (Ease of Access > On-Screen Keyboard) e pressione Ctrl + Alt + Del virtualmente
+
+
+Exercício 1
+Usamos uma máquina virtual para:
+
+❌ Conectar sistemas à rede
+✅ Instalar sistemas operacionais
+❌ Configurar redes locais
+
+
+Exercício 2
+Durante a instalação do Windows Server, o que precisamos configurar?
+
+É necessário criar uma senha para o Administrador da rede.
+Essa senha deve ser segura, contendo letras maiúsculas, minúsculas, números e caracteres especiais.
+
+Exercício 3
+Qual o comando usado para efetuar o login no Windows Server?
+
+❌ Ctrl + Del
+✅ Ctrl + Alt + Del
+❌ Ctrl + Shift + Del
+
+Para acessar a tela de login no Windows Server, sempre é necessário pressionar Ctrl + Alt + Del.
+Nessa tela, inserimos o nome de usuário e a senha.
+
+Exercício 4
+Qual a configuração que devemos usar na placa de rede?
+
+✅ Modo Bridge
+
+O modo Bridge permite que a máquina virtual se conecte diretamente à rede física, utilizando as configurações da placa de rede do host.
+Dessa forma, o Windows Server na VM tem acesso à internet e à rede local.
+
+Exercício 5
+Com o Windows Server posso:
+
+❌ Gerar IP de forma automática para a rede
+✅ Gerenciar de forma fácil e prática minha rede
+❌ Gerar mais máquinas para rede
+
+O Windows Server permite configurar DHCP, DNS, domínios, entre outros, além de possibilitar acesso remoto ao servidor.
+
+Exercício 6
+Na máquina virtual posso:
+❌ Instalar apenas um sistema operacional
+✅ Instalar vários sistemas operacionais
+❌ Não posso instalar sistemas operacionais
+
+É possível criar várias VMs e instalar diversos sistemas operacionais distintos como Windows Server, Windows 10/11, Linux, etc.
