@@ -83,3 +83,59 @@ Gateway: (usar o da rede local, ex: 192.168.1.1)
 DNS preferencial: 127.0.0.1 (o próprio servidor)
 
 ❗ O IP deve ser fixo, pois o servidor precisa ser sempre localizável para autenticação e resolução DNS.
+
+Exercício 1
+Quais alternativas indicam as ações que podemos realizar com o Gerenciador de Servidores:
+
+✅ Gerenciar e configurar meu Windows Server.
+❌ Compartilhar sistemas operacionais.
+❌ Instalar sistemas operacionais.
+
+O Gerenciador de Servidores é usado para configurar e administrar funções do sistema como AD DS, DNS, DHCP, entre outros.
+
+Exercício 2
+Um servidor de rede deve ter seu IP:
+
+✅ Sempre fixo, configurado manualmente.
+❌ Alterando sempre que o sistema é iniciado, nunca fixo.
+❌ Configurado por um servidor DHCP.
+
+O IP do servidor deve ser fixo, pois ele é um ponto de referência na rede.
+Se o IP mudar, os demais dispositivos não conseguirão localizá-lo corretamente.
+
+Exercício 3
+O que preciso desinstalar para conseguir trocar o nome do computador no Windows Server?
+
+É necessário remover o Active Directory (despromover o servidor de domínio).
+
+O sistema bloqueia a alteração do nome da máquina quando o servidor é um Controlador de Domínio com AD instalado.
+O certificado de segurança mencionado refere-se ao estado de promoção do AD, não a um certificado digital literal.
+
+Exercício 4
+Por que preciso instalar o Active Directory?
+
+O Active Directory é necessário para:
+
+Promover o servidor como Controlador de Domínio
+
+Gerenciar usuários, grupos, políticas, computadores e permissões
+
+Permitir a instalação de serviços como DNS integrados à estrutura de domínio
+
+Exercício 5
+Com um servidor de domínio podemos:
+
+✅ Ter o controle de todos os computadores que participam da rede
+❌ Ter o controle apenas nos servidores de rede
+❌ Controlar e gerenciar meu Windows Server
+
+Um servidor de domínio centraliza a autenticação, permissões, políticas e administração da rede, incluindo todos os dispositivos participantes, e não apenas servidores.
+
+Exercício 6
+O que é uma “floresta” dentro da configuração de um servidor de domínio?
+
+Uma floresta (forest) é a estrutura raiz do Active Directory.
+Ela permite criar e gerenciar múltiplos domínios e relações de confiança entre eles.
+Em uma floresta, o primeiro domínio criado é o domínio raiz, com autoridade sobre os demais.
+
+
