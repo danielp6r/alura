@@ -1,0 +1,156 @@
+Aula 3 – Configuração de DNS, Zonas e Active Directory
+
+1. Acesso à Ferramenta de DNS
+Acesse:
+Gerenciador do Servidor > Ferramentas > DNS
+
+O DNS foi configurado no servidor com IP fixo 192.168.1.5
+
+🔹 O que é o DNS?
+O DNS (Domain Name System) traduz nomes de host (ex: daniel.srv) para endereços IP (ex: 192.168.1.5)
+
+Permite o acesso a servidores e serviços por nome, facilitando a administração e a experiência do usuário.
+
+2. Testando o DNS via PowerShell
+Comando:
+ping daniel.srv
+Resultado esperado: resposta correta com o IP 192.168.1.5, confirmando que o DNS está resolvendo o nome corretamente
+
+3. Zonas de Pesquisa no DNS
+🔹 Zona de Pesquisa Direta
+Tradução de nome → IP
+
+Exemplo: daniel.srv → 192.168.1.5
+
+🔹 Zona de Pesquisa Reversa
+Tradução de IP → nome
+
+Utilizada para logs, segurança e validação de nomes
+
+Criada manualmente em:
+Ferramentas > DNS > Zonas de pesquisa reversa
+
+⚠️ A zona reversa é opcional, mas altamente recomendada em redes empresariais para rastreabilidade e diagnóstico.
+
+4. Histórico de Ações no Active Directory
+Ao acessar Ferramentas > Active Directory, o sistema exibe:
+
+Ferramentas utilizadas
+
+Configurações aplicadas
+
+Data e hora das alterações
+
+Isso permite ao administrador manter controle e rastreabilidade de todas as ações executadas no ambiente.
+
+5. Sites e Serviços do Active Directory
+Acesse:
+Ferramentas > Sites e Serviços do Active Directory
+
+🔹 Subnets (Sub-redes)
+Definem quais sub-redes pertencem a quais sites
+
+Usado para otimizar autenticação, replicação e serviços de localização
+
+Exemplo: definir que a sub-rede 192.168.1.0/24 pertence ao site padrão
+
+🔎 Utilizado principalmente em ambientes com múltiplos sites físicos (filiais, matriz, etc.)
+
+6. Módulo do Active Directory no PowerShell
+Comandos básicos utilizados:
+
+
+Get-ADUser -Filter *
+Get-ADComputer -Filter *
+Get-ADOrganizationalUnit -Filter *
+Ver compartilhamentos de rede:
+
+net share
+Abrir compartilhamentos com explorer:
+
+start \\daniel.srv
+Esses comandos permitem administração avançada e automatização de tarefas no AD
+
+7. Unidades Organizacionais (UOs)
+Acesse:
+Ferramentas > Usuários e Computadores do Active Directory
+
+🔹 Criação de Estrutura de UOs:
+Criar pasta: Setor RH
+
+Subpastas: Admissão, Demissão
+
+Criar pasta: Vendas
+
+Subpastas: Produtos, Serviços
+
+🔹 Finalidade:
+Organizar usuários e permissões por setor/função
+
+Aplicar GPOs específicas para cada UO
+
+Facilita delegação de permissões e controle de acesso
+
+8. Computadores, Usuários e Permissões
+Dentro de Usuários e Computadores do AD, o administrador pode:
+
+Criar usuários e grupos
+
+Vincular computadores ao domínio
+
+Delegar permissões específicas por UO
+
+Controlar acesso a recursos como pastas, scripts de login, etc.
+
+Essa é a ferramenta principal de trabalho diário do administrador de rede em ambientes com Active Directory
+
+Exercício 1
+Pra que configuro um DNS no Windows Server?
+
+✅ Para que os outros computadores da rede que estão sob domínio do servidor possam acessá-lo por nome definido, e não apenas por IP.
+
+O DNS permite traduzir nomes como daniel.srv para o IP real do servidor (ex: 192.168.1.5), facilitando o acesso e a administração da rede.
+
+Exercício 2
+Com uma zona de pesquisa inversa:
+
+✅ O servidor acessa os computadores pelo nome e IP
+❌ Pesquiso por computadores na minha rede
+❌ Posso inverter o IP de meu computador
+
+A zona de pesquisa inversa resolve um endereço IP para o nome do host.
+É o processo contrário da zona direta (nome → IP) e melhora rastreamento e diagnósticos.
+
+Exercício 3
+O que é uma subnet?
+
+✅ Uma subdivisão da rede local, usada para definir áreas de controle lógico, como sites no Active Directory.
+❌ Inserir informações do site da empresa como padrão nos computadores
+
+Uma subnet representa uma parte específica da rede IP (ex: 192.168.1.0/24) e é usada para associar clientes a Sites no AD, melhorando autenticação e replicação.
+
+Exercício 4
+O que faz o PowerShell do Windows Server?
+
+✅ Permite executar comandos administrativos, como buscar pastas compartilhadas, criar usuários, abrir pastas, instalar funções, etc.
+
+O PowerShell é a principal interface de linha de comando e automação do Windows Server, com suporte a cmdlets do AD e gerenciamento completo.
+
+Exercício 5
+Qual o comando usado para acessar pastas no PowerShell?
+
+✅ start nome_da_pasta
+
+Exemplo:
+
+start \\daniel.srv\Compartilhamento
+O comando start abre caminhos ou executa programas a partir do PowerShell ou prompt de comando.
+
+Exercício 6
+Para que servem as Unidades Organizacionais (UOs)?
+
+✅ Para organizar usuários e computadores dentro do Active Directory.
+Permitem aplicação de políticas (GPOs) e controle de permissões conforme a estrutura da empresa (RH, Vendas, TI, etc.)
+
+UOs são fundamentais para o controle granular da rede e para facilitar a delegação administrativa.
+
