@@ -1,0 +1,185 @@
+Aula 4 – Criação de Usuários, Permissões e Inclusão de Computadores no Domínio
+1. Criação de Usuários no Active Directory
+Acesse:
+Ferramentas > Usuários e Computadores do Active Directory
+
+Selecione a Unidade Organizacional (UO) desejada (ex: Setor RH)
+
+Clique com o botão direito > Novo > Usuário
+
+🔹 Exemplo de usuários criados:
+Paulo Santos
+Marcos Silva
+
+Ambos como gerentes do Setor RH
+
+🔹 Etapas para criar o usuário:
+Nome e sobrenome
+
+Nome de logon (ex: paulo.santos)
+
+Definir senha
+
+Opções: exigir troca de senha, impedir alteração, expiração, etc.
+
+2. Propriedades do Usuário
+Após criado, clique com o botão direito no usuário > Propriedades. Principais guias:
+
+Geral: informações básicas como nome e e-mail
+
+Endereço: dados opcionais
+
+Conta:
+
+Nome de logon
+
+Opção de desbloqueio da conta
+
+Restrições de logon: define em quais computadores o usuário pode efetuar login
+
+Exemplo: PAULO, GERENCIA para o usuário Paulo
+
+Isso aumenta a segurança, impedindo que um usuário use credenciais válidas em qualquer máquina da rede.
+
+3. Configurações de Senha
+Exigir troca no primeiro logon
+
+Impedir alteração de senha
+
+Senha nunca expira
+
+Conta expira em determinada data
+
+Autenticação por smart card
+
+Conta desabilitada
+
+Essas opções devem ser aplicadas conforme política de segurança da empresa.
+
+4. Configuração de IP do Computador Cliente
+Acesse:
+Painel de Controle > Central de Rede e Compartilhamento > Alterar configurações do adaptador
+
+Clique com o direito na placa ativa > Propriedades
+
+Selecione Protocolo TCP/IPv4 > Propriedades
+
+🔹 Configurações:
+IP fixo: 192.168.1.4
+
+Máscara de sub-rede: 255.255.255.0 (preenchido automaticamente)
+
+Gateway padrão: 192.168.1.1
+
+DNS preferencial: 192.168.1.5 (IP do servidor)
+
+Todos os computadores que farão parte do domínio devem ter o servidor como DNS preferencial
+
+5. Teste de Conectividade
+No CMD, usar o comando:
+
+cmd
+Copiar
+Editar
+ping daniel.srv
+Se os pacotes retornarem com sucesso, a comunicação com o servidor está funcionando via nome DNS, não apenas IP.
+
+6. Adicionar Computador ao Domínio
+No computador cliente:
+
+Clique com o botão direito em Este Computador > Propriedades
+
+Acesse: Configurações Avançadas do Sistema > Nome do Computador > Alterar
+
+Marque: Membro de domínio
+
+Digite: daniel.srv
+
+Será solicitada uma conta com permissão no domínio (ex: Administrador)
+
+Após reiniciar, o computador fará parte do domínio.
+
+7. Verificar no Servidor se o Computador Entrou no Domínio
+Acesse:
+Usuários e Computadores do AD > Container "Computers"
+
+Clique com o direito > Atualizar
+
+O nome do computador aparecerá na lista
+
+Isso confirma que a máquina foi unida com sucesso ao domínio do servidor.
+
+✅ Conclusão
+Essa é a configuração padrão e obrigatória para qualquer computador cliente que será gerenciado pelo servidor com Active Directory:
+
+IP fixo com DNS apontando para o servidor
+
+Usuários configurados com restrições e permissões
+
+Inclusão no domínio
+
+Validação via ping e gerenciamento pelo AD
+
+
+Exercício 1
+Qual destas opções não faz parte da criação de usuários?
+
+✅ Contas de usuários conectadas
+❌ O usuário deve trocar a senha no primeiro logon
+❌ A senha nunca expira
+
+Durante a criação de um usuário no Active Directory, as opções de senha (como troca no primeiro logon, expiração, bloqueio da conta) são configuráveis.
+"Contas de usuários conectadas" não é um termo técnico usado neste contexto e não faz parte do processo de criação de usuários.
+
+Exercício 2
+O que preciso configurar para logar com o usuário no servidor a partir de outro computador?
+
+✅ É necessário:
+
+Definir IP fixo no computador cliente
+
+Definir o DNS preferencial apontando para o IP do servidor
+
+Configurar o computador como membro do domínio (ex: daniel.srv)
+
+Sem essas configurações, o computador estará apenas na mesma rede, mas não será gerenciado pelo domínio.
+
+Exercício 3
+Por que devemos configurar um computador único para que cada usuário faça logon?
+
+✅ Por motivos de segurança.
+Restringir o logon a estações específicas evita que usuários usem credenciais de terceiros para acessar outros computadores.
+
+Essa política limita a exposição da rede e protege dados e sessões.
+
+Exercício 4
+Onde configuramos os privilégios de Logon?
+
+✅ Opções de conta > Fazer logon em...
+❌ Opções de conta, privilégios e segurança
+❌ Opções de conta, fazer logoff em...
+
+A configuração “Fazer logon em...” define quais computadores o usuário pode acessar.
+Está localizada na aba Conta das propriedades do usuário no AD.
+
+Exercício 5
+Como configurar o computador para ficar sob domínio no servidor?
+
+✅ Acesse:
+Este Computador > Propriedades > Configurações Avançadas > Nome do Computador > Alterar
+
+Marque “Membro de domínio”
+
+Insira o nome do domínio (ex: daniel.srv)
+
+Forneça credenciais administrativas do domínio
+
+Após reiniciar, o computador estará integrado ao domínio e visível no Active Directory.
+
+Exercício 6
+Para que servem os grupos de usuários?
+
+✅ Para aplicar permissões e restrições em massa de forma centralizada.
+
+Exemplo: usuários do setor RH que não podem acessar arquivos de Vendas.
+Basta configurar essa regra no grupo RH, sem precisar aplicar em cada usuário individualmente.
