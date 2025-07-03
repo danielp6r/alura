@@ -1,0 +1,80 @@
+Aula 5 – Logon de Usuário de Domínio e Integração com Cliente Windows 7
+
+1. Criação e Preparação da Máquina Cliente (Windows 7)
+Instalação do Windows 7 em uma nova VM no VirtualBox.
+
+Configurações recomendadas:
+
+Rede: Modo Bridge Adapter (ponte), para que o Windows 7 esteja na mesma rede do servidor.
+
+Memória RAM: Alocar o mínimo possível (ex: 1024 MB), pois já há outras VMs em execução.
+
+Armazenamento: Mínimo necessário para instalação básica.
+
+2. Configuração de Rede no Windows 7
+Acesse:
+Painel de Controle > Central de Rede e Compartilhamento > Alterar configurações do adaptador
+
+Clique com o direito na conexão ativa > Propriedades
+
+Selecione Protocolo TCP/IPv4 > Propriedades
+
+Defina:
+
+IP fixo: 192.168.1.x (ex: 192.168.1.10)
+
+Máscara: 255.255.255.0
+
+Gateway padrão: 192.168.1.1
+
+DNS preferencial: 192.168.1.5 (IP do Windows Server)
+
+Isso garante que o cliente consiga se comunicar com o domínio via DNS.
+
+3. Inclusão do Cliente Windows 7 ao Domínio
+Acesse:
+Meu Computador > Propriedades > Configurações Avançadas do Sistema > Nome do Computador > Alterar
+
+Marque: Membro de domínio
+
+Insira o nome do domínio: daniel.srv
+
+Forneça as credenciais administrativas do domínio para autenticação
+
+Reinicie o computador
+
+Após reiniciar, o computador já está vinculado ao domínio.
+
+4. Realizando o Logon com Usuário de Domínio
+No prompt de logon do Windows 7, clique em Outro usuário
+
+Digite o nome do usuário de domínio e a senha.
+Exemplo:
+
+Usuário: daniel.srv\paulo-s
+
+Senha: Pa$$w0rd
+
+Como foi configurado para trocar a senha no primeiro logon, o sistema irá solicitar uma nova senha imediatamente.
+
+5. Restrições Aplicadas ao Usuário
+O logon somente é permitido se:
+
+For feito no horário autorizado
+
+Estiver sendo usado o computador previamente liberado nas propriedades do usuário no AD
+
+Tentativas de login com outro usuário da rede neste computador serão bloqueadas, conforme as configurações da guia "Conta" > "Fazer logon em..."
+
+Isso garante segurança e controle de acesso individualizado.
+O administrador de rede é o responsável por essas permissões.
+
+✅ Conclusão
+Esta aula demonstrou na prática:
+
+Como integrar um cliente Windows 7 ao domínio
+
+Como aplicar políticas de acesso
+
+Como garantir que apenas usuários autorizados possam acessar seus respectivos computadores
+
