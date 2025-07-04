@@ -1,0 +1,103 @@
+✅ Aula 6 – Grupos, Permissões e Compartilhamento no Active Directory
+1. Gerenciamento de Usuários em Massa – Central Administrativa do AD
+Acesse:
+Gerenciador do Servidor > Ferramentas > Central de Administração do Active Directory
+
+Utilizada para criação em lote de usuários e gerenciamento mais ágil.
+
+Exibe todas as configurações em uma única tela (sem necessidade de navegar por múltiplas abas).
+
+Ideal em casos com grande volume de contratações, como exemplo: 20 novos funcionários no setor RH.
+
+🔹 Comparação:
+
+Usuários e Computadores do AD: mais detalhado, mas lento.
+
+Central Administrativa: permite preenchimento rápido de múltiplos dados em uma interface centralizada.
+
+2. Criação de Grupos no Active Directory
+Acesse:
+Usuários e Computadores do Active Directory > Botão direito > Novo > Grupo
+
+Exemplo de grupos criados:
+
+Gerentes
+
+Impressoras
+
+🔹 Grupos permitem:
+
+Gerenciamento centralizado de permissões
+
+Atribuir regras/políticas a vários usuários simultaneamente
+
+3. Adicionando Usuários a Grupos
+Método 1 – Via grupo:
+
+Acesse o grupo > guia Membros > Adicionar
+
+Digite nomes de usuários separados por ; → clique em Verificar Nomes
+
+Método 2 – Via usuário:
+
+Selecione múltiplos usuários > Propriedades > guia Membro de > Adicionar
+
+Insira o nome do grupo e confirme
+
+É possível:
+
+Adicionar usuários a grupos
+
+Adicionar grupos a outros grupos (aninhamento), por exemplo:
+
+Colocar o grupo Gerentes como membro do grupo Impressoras
+
+Assim, todos os gerentes terão acesso à impressora automaticamente
+
+4. Criação e Compartilhamento de Pasta no Servidor
+Exemplo:
+Criar pasta Admissao na área de trabalho
+
+Clique com o direito > Propriedades > guia Compartilhamento > Compartilhar...
+
+Clique em "Encontrar pessoas"
+
+Digite o nome do grupo (ex: Impressoras) e clique em Verificar nomes
+
+🔹 Definir Permissões:
+
+Leitura: visualizar arquivos
+
+Leitura/Gravação: visualizar, modificar e salvar
+
+5. Compartilhamento Avançado
+Acesse:
+Propriedades da pasta > Compartilhamento > Compartilhamento Avançado
+
+Marque “Compartilhar a pasta”
+
+Clique em Permissões
+
+Adicione grupos ou usuários e defina:
+
+Leitura
+
+Alteração
+
+Controle Total (apenas para administradores)
+
+⚠️ Controle Total permite excluir, renomear e alterar arquivos.
+Recomendado apenas para usuários com perfil administrativo.
+
+✅ Conclusão
+Nesta aula foi abordado:
+
+Uso da Central Administrativa para gerenciamento em massa
+
+Criação e gestão de grupos
+
+Associação de usuários e grupos de forma eficiente
+
+Compartilhamento de pastas com controle via grupos
+
+Aplicação de permissões conforme o nível de acesso necessário
