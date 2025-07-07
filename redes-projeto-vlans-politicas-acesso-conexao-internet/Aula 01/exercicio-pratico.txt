@@ -1,0 +1,78 @@
+Exercício Prático:
+
+A aplicação do conceito de redes locais virtuais (em inglês, Virtual Local Area Networks - VLANs) possibilitam a segmentação das redes de computadores de forma lógica. Essa segmentação é realizada para isolar grupos de dispositivos em uma rede, independentemente de sua localização física. A implementação de VLANs pode resultar em melhoria de segurança, eficiência e flexibilidade das redes. Por isso, é fundamental entender bem como podemos implementá-la na prática.
+
+Preparamos uma breve lista de atividades (não obrigatórias) para que você possa exercitar a criação e configuração de VLANs usando o ambiente de simulação Cisco Packet Tracer. Bora praticar!?
+
+Atividades
+
+    Construa uma rede para uma empresa com três diferentes departamentos (insira ao menos um computador para representar cada departamento). Realize a conexão física dos dispositivos usando cabos de rede e switches.
+    Configure a rede dessa empresa segmentando os departamentos em diferentes redes locais virtuais (VLANs) nos Switches.
+    Verifique a configuração das VLANs e a configuração das interfaces de conexão com os computadores. Certifique-se de que as interfaces estejam devidamente configuradas em função dos departamentos representados pelos computadores (teremos uma VLAN para cada departamento).
+    Faça testes de conectividade para avaliar se computadores em diferentes VLANs conseguem trocar mensagens na rede. Caso necessário, configure o modo trunk para o tráfego e transmissão de várias VLANs nos switches da rede.
+    Adicione um roteador ao projeto de rede e implemente também sua configuração com base nas VLANs previamente definidas. Neste caso, adote o conceito das subinterfaces.
+
+Atenção: não se esqueça de salvar a sua solução lá no Cisco Packet Tracer. Assim, poderemos utilizá-la como base para as demais atividades (não obrigatórias) que preparamos nas aulas seguintes.
+
+Caso necessite de ajuda para resolver as atividades, basta clicar na seção “Opinião da pessoa instrutora” para acessar instruções para implementação de possíveis soluções.
+
+Opinião do instrutor:
+
+Essas atividades representam passos para criação de uma rede com VLANs, dividindo os departamentos em segmentos lógicos distintos e configurando um roteador para permitir a comunicação entre as VLANs.
+
+Atividade 1
+
+    Abra o Cisco Packet Tracer e inicie um novo projeto.
+    Adicione três switches à tela de trabalho.
+    Conecte um computador a cada switch para representar os três departamentos.
+    Use cabos de rede para a conexão física.
+
+Atividade 2
+
+    Selecione cada switch e acesse o modo de configuração (CLI).
+    Crie VLANs para representar os três departamentos. Por exemplo:
+
+    Switch1(config)# vlan 10
+    Switch1(config-vlan)# name Departamento1
+
+Replique esse processo para os outros dois switches.
+Atribua as portas dos switches às VLANs correspondentes. Por exemplo:
+
+Switch1(config)# interface range f0/1-f0/3
+Switch1(config-if-range)# switchport mode access
+Switch1(config-if-range)# switchport access vlan 10
+
+    Replique esse processo para os demais switches e portas.
+
+Atividade 3
+
+    Execute o comando show vlan em cada switch para verificar a configuração das VLANs.
+    Execute o comando show interfaces switchport para verificar a configuração das interfaces em relação às VLANs.
+
+Atividade 4
+
+    Abra os computadores representando diferentes departamentos.
+    Atribua endereços IP compatíveis com as VLANs a que pertencem.
+    Realize testes com o comando ping entre computadores em VLANs diferentes.
+    Nos switches, identifique as portas que estão conectadas entre eles. Essas portas devem ser configuradas no modo trunk para permitir a passagem de tráfego de várias VLANs.
+    Acesse o modo de configuração da interface dessas portas e configure-as como trunk (em português, seria “modo tronco”). Por exemplo:
+
+    Switch1(config)# interface range f0/24
+    Switch1(config-if-range)# switchport mode trunk
+
+    Replique esse processo para as portas conectadas entre os demais switches.
+    Verifique a configuração das portas trunk usando o comando show interfaces trunk em cada switch.
+
+Atividade 5
+
+    Adicione um roteador à tela de trabalho.
+    Conecte o roteador a um dos switches.
+    No roteador, acesse o modo de configuração e configure as subinterfaces para cada VLAN. Por exemplo:
+
+    Router(config)# interface gig0/0.10
+    Router(config-subif)# encapsulation dot1Q 10
+    Router(config-subif)# ip address 192.168.1.1 255.255.255.0
+
+Replique esse processo para as demais VLANs. Lembre-se de ajustar os números das subinterfaces e endereços IP conforme necessário.
+Verifique também se as portas dos switches conectadas ao roteador estão configuradas como modo trunk.
+Realize os testes de conectividade com o comando ping.

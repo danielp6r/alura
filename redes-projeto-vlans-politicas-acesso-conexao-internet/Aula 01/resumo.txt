@@ -1,0 +1,116 @@
+Criando e configurando VLANS:
+
+Vamos iniciar nosso projeto inserindo dois computadores no Laboratório A e outros dois computadores no Laboratório B.
+
+Na sequência, insira dois Switches (modelo 2950-24) - um que ficará na sala de finanças e outro que ficará na sala de vendas.
+
+Por fim, realize a conexão dos Switches com os computadores, usando um cabo direto e a conexão entre os Switches usando um cabo crossover.
+
+Devemos agora configurar as vlans em cada um dos switches. Iremos adotar a Vlan 10 para o segmento de pesquisa do Instituto Inovae e a Vlan 20 para o segmento administrativo. Para isso, vamos realizar as seguintes etapas de configuração e análise nos switches inseridos nos laboratórios A e B:
+
+    Clique no Switch e, em seguida, clique na aba CLI;
+    Entre no modo privilegiado digitando enable;
+    Acesse as opções de configuração digitando configure terminal;
+    Vamos criar a vlan de pesquisa digitando vlan 10 e, na sequência, name pesquisa;
+    Uma vez que a Vlan 10 foi criada, devemos sair da configuração da vlan digitando o comando exit;
+    Vamos criar a vlan do segmento administrativo digitando vlan 20 e, na sequência, name administrativo;
+    Podemos observar se a configuração das vlans foi realizada corretamente. Vamos digitar o comando exit para sairmos da configuração da vlan e o comando “crtl + z” para retornar ao menu anterior. Na sequência, vamos inserir o comando show vlan brief e analisar o resultado apresentado.
+
+Observação: Agora, além das vlans nativas e reservadas, temos as vlans pesquisa e administrativo configuradas no switch;
+
+Será que está tudo certo?
+
+Ainda precisamos alterar as interfaces conectadas aos computadores para trabalharem nas respectivas vlans.
+
+Para isso, vamos retornar ao modo de configuração com o comando configure terminal e entrar em cada interface com o comando interface Fa 0/2;
+
+Observação: Note que usamos o mesmo comando para configurar as interfaces, mudando apenas o número da interface. Estamos iniciando pela interface Fa 0/2 por livre escolha. Poderíamos ter iniciado pela interface Fa 0/3. O termo “Fa” é uma abreviação para Fast ethernet, bem mais simples de digitar, não é mesmo!?
+
+Ao entrarmos na interface desejada, digitamos o comando switchport mode access para especificar que essa interface irá operar em modo de acesso, fazendo a conexão do switch com um dispositivo final.
+
+Na sequência, vinculamos a interface a sua respectiva vlan de trabalho com o comando switchport access vlan 10.
+
+Observação: Vamos repetir essas etapas para computador conectado, no entanto a vinculação da interface com a vlan varia em função do computador que estamos configurando. Os computadores usados por pesquisadores estarão na vlan 10 da pesquisa, enquanto os computadores utilizados por coordenadores e técnicos administrativos estarão na vlan 20 do segmento administrativo.
+
+Após configurarmos as interfaces de cada computador nos dois switches, é hora de realizar um teste de conectividade utilizando o comando ping no prompt de comando de cada computador.
+
+Mas, atenção: antes, não se esqueça de atribuir um endereço IP para cada computador conectado na rede.
+
+Basta clicar em cada PC, aba Desktop e, por fim, na opção IP Configuration para inserir um IP de modo estático. No exemplo, inserimos um endereço do tipo 193.165.0.X, em que X no último octeto aponta o endereço individual de cada PC (193.165.0.1, 193.165.0.2, 193.165.0.3 e 193.165.0.4).
+Opinião do instrutor
+
+Não foi necessário configurar a interface que conecta os dois switches para operar no modo trunk, pois os dispositivos da Cisco já vem com a configuração do protocolo DTP. Caso contrário, seria necessário entrar na interface e digitar o comando switchport mode trunk.
+
+No teste de conectividade, você deve ter reparado que há conexão apenas entre os computadores conectados na mesma vlan. Isso se deve ao fato de que as vlans operam como “redes diferentes”. Dessa forma, para realizarmos a conexão entre computadores conectados em diferentes vlans, precisamos de roteamento.
+
+Conectando VLANS:
+
+Para realizarmos a conexão entre as Vlans precisaremos de roteamento. É importante notar que há Switches capazes de realizar o roteamento, sendo conhecidos como Switches camada 3 justamente por combinarem as funcionalidades de switch e roteador (atuando nas camadas 2 e 3 do modelo OSI).
+
+No projeto do Instituto Inovae, estamos usando switches camada 2 que só atuam como comutadores de rede. Sendo assim, precisaremos inserir um roteador.
+
+Nossa tarefa aqui será dividida em algumas partes para facilitar a organização da implementação.
+
+Parte 1 - Inserindo o roteador na rede
+
+Vamos inserir o roteador modelo Cisco 1841, selecionando o equipamento no menu, arrastando e soltando na área de trabalho;
+
+Na sequência, conecte o roteador com o Switch de um dos laboratórios usando cabo direto;
+
+Clique no roteador e vá até a aba CLI;
+
+Caso apareça uma mensagem perguntando se queremos habilitar o modo diálogo, digitamos no;
+
+Posteriormente, devemos entrar na parte privilegiada, digitamos enable e, em seguida, digitamos configure terminal para acessar o modo de configuração;
+
+Entre na interface do roteador que foi conectada com Switch (por exemplo: interface FastEthernet 0/0), com o comando interface Fa 0/0;
+
+As portas dos roteadores empresariais da Cisco vem desabilitadas por padrão, devemos habilitá-las, então digitamos: no shutdown.
+
+Parte 2 - Configurando o protocolo DHCP
+
+A interface ficou verde, a porta está habilitada! Teremos muitos computadores na nossa rede, não é mesmo!? É inviável pensar em uma atribuição de endereços de modo estático. O roteador deve fornecer de modo automático usando o DHCP. Como temos duas vlans, precisamos criar dois tipos de endereços IP.
+
+Vamos criar dois pool dhcp para entregar endereços para essas duas vlans. Confira a sequência:
+
+Vamos clicar no roteador e na aba CLI;
+
+Acesse o modo de configuração usando o comando configure terminal e digite o comando ip dhcp pool vlan 10 para criar um pool dhcp;
+
+Agora, vamos configurar o pool dhcp que acabamos de criar com o comando network 192.168.10.0 255.255.255.0. Estamos informando a rede na qual a vlan 10 estará inserida. Note que estamos usando um endereço IP da classe C;
+
+Digite o comando exit e crie um pool dhcp para a vlan 20;
+
+Para isso, use o comando ip dhcp pool vlan 20 e especifique a rede na qual a vlan 20 estará inserida com network 192.168.20.0 255.255.255.0.
+
+Parte 3 - Configurando subinterfaces
+
+Acabamos de configurar o funcionamento do DHCP em nossa rede e surge uma questão: será que uma única interface (Fa 0/0) consegue entregar dois tipos de endereços IP diferentes?
+
+A resposta é não, sendo assim vamos precisar dividir essa interface, usando o conceito de subinterfaces. A solução que adotamos consiste na criação de uma subinterface dedicada para a vlan da pesquisa e outra para a vlan do administrativo.
+
+Acesse o modo de configuração do roteador com o comando configure terminal e digite o comando interface Fa 0/0.1 para criação da primeira subinterface;
+
+Vamos configurar a subinterface criada com o comando encapsulation dot1Q 10 e, na sequência, digite o comando ip address 192.168.10.1 255.255.255.0 para designar seu endereço IP;
+
+Agora, digite o comando exit e, em seguida, o comando interface Fa 0/0.2 para criar outra subinterface;
+
+Configure a subinterface com o comando encapsulation dot1Q 20 e, na sequência, digite o comando ip address 192.168.20.1 255.255.255.0 para designar seu endereço IP;
+
+Mais uma vez, digite o comando exit para sair da configuração da subinterface;
+
+Para concluirmos o processo de configuração, precisamos definir o default gateway de cada vlan. O default gateway opera como o “portão de saída” de cada rede, as subinterfaces que acabamos de configurar irão cumprir esse papel para cada vlan.
+
+No modo de configuração, digite o comando ip dhcp pool vlan 10 e, em seguida, designe o default gateway com o comando default router 192.168.10.1;
+
+Vamos repetir o processo para a subinterface 2 com o comando ip dhcp pool vlan 20 e, na sequência, default router 192.168.20.1;
+
+Finalizando as configurações de conexão entre as vlans, vamos clicar em cada PC e na opção IP Configuration mudar a atribuição de IP de estática para dinâmica. Observe que nas requisições DHCP para cada máquina, o default gateway é preenchido automaticamente;
+
+Teste a conectividade entre os computadores usando o comando ping no prompt de comando de cada PC.
+Opinião do instrutor
+
+Finalmente conseguimos realizar a conexão entre computadores conectados em diferentes vlans. Conseguimos enviar dados entre os diferentes PCs que inserimos nos Laboratórios A e B!
+
+Observe que não foi necessário configurar a interface do switch conectada ao roteador para operar no modo trunk devido ao protocolo DTP da Cisco. No entanto, em outros dispositivos de rede, eventualmente pode ser preciso a configuração desse modo.
+

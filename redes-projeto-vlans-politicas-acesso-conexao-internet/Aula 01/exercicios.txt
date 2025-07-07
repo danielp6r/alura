@@ -1,0 +1,58 @@
+1. As VLANs, ou Virtual Local Area Networks, consistem em segmentações lógicas de uma rede física. Imagine que você deseja aprimorar o sistema de segurança da rede em uma sala de aula de uma universidade onde está sendo realizada uma prova. A sala está dividida em grupos, e cada grupo está fazendo uma avaliação diferente.
+
+Usando VLANs, qual seria a estratégia mais adequada para a criação da rede?
+
+❌ Criar uma VLAN separada para cada estudante.
+Criar uma VLAN separada para cada estudante pode gerar um excesso de infraestrutura, além de ser impraticável, pois resultaria em um grande número de VLANs para gerenciar.
+
+❌ Criar uma VLAN separada para cada tipo de dispositivo na sala.
+Criar uma VLAN separada para cada tipo de dispositivo na sala não seria útil neste cenário específico, pois não é a tipologia do dispositivo que estamos tentando isolar, mas sim grupos de estudantes realizando a mesma prova.
+
+❌ Criar uma única VLAN para todos os estudantes.
+Uma única VLAN para todos os estudantes não melhoraria a segurança. Se um estudante conseguir comprometer a rede, todos os outros na mesma VLAN seriam afetados.
+
+✅ Criar uma VLAN separada para cada grupo de estudantes realizando a mesma prova.
+Criar uma VLAN separada para cada grupo de estudantes realizando a mesma prova aumentaria a segurança. Isso garantiria que cada grupo só pudesse acessar os recursos de rede relevantes para sua prova específica, minimizando a chance de comprometer a integridade da avaliação. Além disso, reduziria o risco de vazamento de informações entre diferentes grupos.
+
+❌ Não usar VLANs, pois elas não melhoram a segurança da rede.
+As VLANs podem definitivamente melhorar a segurança da rede ao limitar o escopo de transmissão e isolar o tráfego de rede.
+
+2. Uma instituição de ensino superior está realizando um congresso. Por isso, é importante gerenciar o roteamento e as subinterfaces para que os dispositivos de todas as pessoas convidadas externas tenham acesso à web.
+
+Qual seria a maneira ideal para gerenciar o roteamento e as subinterfaces atendendo às demandas do congresso?
+
+❌ Configurar uma única subinterface para todos os convidados e rotear todos os dispositivos através dela.
+Configurar uma única subinterface para todos os convidados e rotear todos os dispositivos através dela pode levar a problemas de desempenho de rede e não proporciona flexibilidade para gerenciar o tráfego.
+
+❌ Configurar uma subinterface separada para cada convidado.
+Configurar uma subinterface separada para cada convidado é excessivo e difícil de gerenciar, especialmente se houver muitos convidados.
+
+❌ Configurar uma subinterface para cada tipo de dispositivo que os convidados possam trazer.
+Configurar uma subinterface para cada tipo de dispositivo é desnecessário e pode ser impraticável, especialmente considerando a variedade de dispositivos que os convidados podem trazer.
+
+✅ Configurar uma subinterface para todos os convidados e implementar um roteamento dinâmico.
+Configurar uma subinterface para todos os convidados e implementar um roteamento dinâmico oferece a melhor solução. Uma única subinterface simplifica a gestão da rede, enquanto o roteamento dinâmico permite que ela acomode automaticamente as mudanças no tráfego, melhorando a eficiência e o desempenho.
+
+❌ Configurar uma subinterface para cada convidado, mas rotear todos os dispositivos através de uma única subinterface.
+Configurar uma subinterface para cada convidado, mas rotear todos os dispositivos através de uma única, não faz sentido. Isso resultaria em uma gestão de rede desnecessariamente complicada.
+
+3. Portas trunk são conexões entre sistemas de telecomunicações que permitem a transmissão simultânea de várias VLANs por meio de uma única ligação física. É necessário configurar as portas trunk na biblioteca de uma instituição de ensino superior para permitir o acesso adequado à rede para professores e estudantes.
+
+Como as portas devem ser configuradas?
+
+✅ Devemos configurar uma única porta trunk e usar VLANs para separar o tráfego de rede.
+Configurar uma única porta trunk e usar VLANs para separar o tráfego de rede é a melhor opção. Isso permite a separação adequada do tráfego de rede para professores, alunos e convidados, garantindo que cada tipo de usuário tenha o acesso adequado. Ao mesmo tempo, simplifica o gerenciamento da rede e faz uso eficiente dos recursos de um switch.
+
+❌ Devemos configurar uma única porta trunk para todos os usuários.
+Configurar uma única porta trunk para todos os usuários sem uso de VLANs não proporciona a separação necessária do tráfego. Ou seja, não é possível garantir que cada tipo de usuário tenha o acesso adequado e seguro.
+
+❌ Não devemos usar portas trunk, pois elas não são úteis para separar o tráfego de rede.
+As portas trunk são fundamentais em ambientes com múltiplas VLANs. Elas permitem transportar vários fluxos de tráfego simultaneamente, melhorando a segmentação, segurança e eficiência da rede.
+
+❌ Devemos configurar uma porta trunk separada para cada tipo de usuário.
+Configurar uma porta trunk separada para cada tipo de usuário seria um uso ineficiente dos recursos do switch, além de complicar a manutenção e o gerenciamento da rede.
+
+❌ Devemos configurar uma porta trunk para cada usuário individual.
+Configurar uma porta trunk para cada usuário individual seria completamente impraticável e desnecessariamente complexo
+
+
