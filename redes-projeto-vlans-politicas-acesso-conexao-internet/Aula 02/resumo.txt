@@ -1,0 +1,95 @@
+Resumo da Aula – Redundância com um Terceiro Switch
+
+Nesta aula, foi implementada uma redundância de links na rede através da adição de um terceiro Switch. A topologia foi ajustada da seguinte forma:
+
+Uma interface do novo Switch foi conectada ao roteador.
+
+Outras duas interfaces foram conectadas aos dois Switches já existentes.
+
+Esse novo Switch deve transportar dados das VLANs 10 (pesquisa) e 20 (administrativo).
+
+Etapas de configuração:
+Acessar o CLI do novo Switch.
+
+Entrar no modo privilegiado com enable.
+
+Acessar o modo de configuração global com configure terminal.
+
+Criar as VLANs:
+
+vlan 10
+name pesquisa
+
+vlan 20
+name administrativo
+
+Encaminhamento das VLANs:
+Não foi necessário configurar manualmente as interfaces em modo trunk, pois os dispositivos Cisco utilizam o DTP (Dynamic Trunking Protocol) habilitado por padrão, que ativa o modo trunk automaticamente entre os Switches.
+
+Conclusão:
+Com essa configuração, a rede mantém o funcionamento normal, agora com redundância de links. Caso um dos caminhos falhe, o outro assume automaticamente, garantindo maior disponibilidade e resiliência da rede.
+
+
+Resumo – Alocando Endereços IP de Modo Eficiente
+Uma rede com 400 dispositivos usando endereçamento classe B (exemplo: 172.16.0.0) tem muitos endereços IP reservados que não são usados se mantida a máscara padrão (255.255.0.0). Para otimizar, ajusta-se a máscara conforme a demanda real, evitando desperdício.
+
+Passos principais:
+
+Calcular a demanda de endereços:
+
+400 dispositivos → representação binária: 110010000 (9 bits necessários)
+
+Máscara padrão classe B:
+
+Decimal: 255.255.0.0
+
+Binário: 11111111.11111111.00000000.00000000
+
+Ajustar a máscara para 9 bits de host:
+
+Usar 23 bits para rede e 9 bits para host
+
+Binário ajustado: 11111111.11111111.11111110.00000000
+
+Decimal ajustado: 255.255.254.0
+
+Notação CIDR: 172.16.0.0/23
+
+Capacidade da sub-rede:
+
+2^9 - 2 = 510 endereços utilizáveis (considerando rede e broadcast reservados)
+
+Definir endereços das sub-redes e broadcasts:
+
+Transição de bits 1 para 0 ocorre no terceiro octeto
+
+Incremento entre sub-redes: +2 no terceiro octeto
+
+Exemplo:
+
+Sub-rede 1: 172.16.0.0 → Broadcast: 172.16.1.255
+
+Sub-rede 2: 172.16.2.0 → Broadcast: 172.16.3.255
+
+Sub-rede 3: 172.16.4.0 → Broadcast: 172.16.5.255
+
+...
+
+Sub-rede n: 172.16.254.0 → Broadcast: 172.16.255.255
+
+Configuração do roteador:
+
+Atualizar pools DHCP para as VLANs com as redes ajustadas
+
+Configurar gateways padrão correspondentes às sub-redes
+
+Ajustar endereços IP nas subinterfaces conforme as sub-redes
+
+Testes finais:
+
+Solicitar novos IPs via DHCP nos dispositivos
+
+Verificar conectividade via ping
+
+Resultado esperado
+Rede com maior eficiência no uso de endereços IP, sem desperdício, atendendo à demanda de forma adequada, mantendo o funcionamento correto e permitindo expansão.

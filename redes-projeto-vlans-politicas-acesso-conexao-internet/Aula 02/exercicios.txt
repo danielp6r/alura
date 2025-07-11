@@ -1,0 +1,48 @@
+1.Calculando um endereço de IP
+
+Hoje ainda se fala em classes de endereço IP, divididas em cinco principais: Classe A, Classe B, Classe C, Classe D e Classe E. Cada uma tem um intervalo específico de endereços IP disponíveis.
+
+Considere uma instituição de ensino superior com 2.500 alunos, 120 professores e convidados externos.
+
+Qual é a classe de endereço IP mais adequada para ser usada na rede da instituição?
+
+Alternativas:
+
+❌ Classe A
+A Classe A, com endereços de 1.0.0.0 a 126.0.0.0, permite cerca de 16 milhões de hosts por rede (2²⁴ - 2 = 16.777.214). É excessiva para esta instituição e resultaria em desperdício de endereços IP.
+
+✅ Classe B
+A Classe B, com endereços de 128.0.0.0 a 191.255.0.0, suporta até 65.534 hosts por rede (2¹⁶ - 2 = 65.534). Essa quantidade acomoda confortavelmente os alunos, professores e convidados, com margem para expansão futura.
+
+❌ Classe C
+A Classe C, com endereços de 192.0.0.0 a 223.255.255.0, suporta apenas 254 hosts por rede (2⁸ - 2 = 254). É insuficiente para o total de usuários da instituição.
+
+❌ Classe D
+A Classe D é usada para endereços multicast, com intervalo de 224.0.0.0 a 239.255.255.255. Não é usada para alocação de hosts em redes comuns.
+
+❌ Classe E
+A Classe E, de 240.0.0.0 a 255.255.255.254, é reservada para uso experimental e pesquisa, e não é destinada para redes de produção.
+
+2. Configurando as sub-redes
+
+Um FabLab dentro de uma instituição de ensino superior precisa acomodar estudantes, professores e pessoas convidadas da comunidade com acesso à rede. Ou seja, é necessário configurar um conjunto de sub-redes.
+
+Qual seria a forma ideal para essa configuração?
+
+Alternativas:
+
+✅ Configurar duas sub-redes, uma para membros internos (estudantes, professores, pessoas técnicas) e outra para convidadas da comunidade.
+Essa abordagem fornece a segmentação necessária do tráfego de rede, mantendo a gestão manejável. Permite controle de acesso diferenciado e aumenta a segurança ao separar o tráfego interno do tráfego de convidados.
+
+❌ Configurar uma única sub-rede para todas as pessoas usuárias.
+Não fornece segmentação adequada do tráfego, comprometendo a segurança e o controle de acesso.
+
+❌ Não usar sub-redes, pois elas não ajudam na segmentação do tráfego de rede.
+Sub-redes são fundamentais para segmentar o tráfego, melhorar o desempenho e aumentar a segurança, dividindo redes grandes em partes menores e controláveis.
+
+❌ Configurar uma sub-rede separada para cada tipo de usuário.
+Excessivo e de gestão complexa, especialmente com muitos tipos de usuários.
+
+❌ Configurar uma sub-rede para cada usuário individual.
+Impraticável e desnecessariamente complicado.
+
