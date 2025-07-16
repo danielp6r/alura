@@ -1,0 +1,59 @@
+Resumo - adicionando um servidor web
+
+Começamos adicionando um servidor ao nosso projeto com o intuito de centralizar em nossa rede alguns dados e informações estratégicas para a gestão do Instituto Inovae.
+
+Para isso, arraste para a área de trabalho um servidor, clicando na opção End Devices e depois selecionando a opção Server (terceira opção da esquerda para direita).
+
+Uma vez adicionado ao projeto, precisamos conectar o Servidor ao Switch C (switch diretamente conectado ao roteador). Nessa ligação utilizamos cabo direto e selecionamos uma porta FastEthernet que estava livre no Switch C (a escolha da porta não afeta o resultado final).
+
+Agora, vamos criar um vlan dedicada aos servidores. Precisaremos clicar em cada Switch (A, B e C), clicar na aba CLI, entrar no modo de configuração com os comandos enable e configure terminal e criar a vlan 30 com nome servidores usando dois comandos em sequência: vlan 30 e name servidores.
+
+No Switch C, vamos configurar a interface que está conectada ao servidor adicionado para que ela opere no modo acesso. No modo configuração, acessamos a interface com o comando interface Fa 0/4 e definimos o modo acesso com os comandos switchport mode access e switchport access vlan 30.
+
+Precisamos configurar a vlan 30 no roteador, criando uma nova subinterface que possibilite a conexão da vlan com as demais anteriormente criadas em nosso projeto. Vamos clicar no roteador, na aba CLI, digitar enable e acessar o modo de configuração digitando configure terminal.
+
+Para criar uma nova subinterface inserimos o comando interface Fa0/0.3 (subinterface) e a configuramos digitando encapsulation dot1Q 30. Na sequência, definimos o seu endereço IP com o comando ip address 172.16.4.1 255.255.254.0. Observe que estamos usando o endereço de sub-rede 3 da lista que havíamos definido na aula anterior.
+
+Agora, precisamos definir o endereço IP do servidor. Vamos atribuir de modo estático para simplificar o seu acesso. Clique no servidor, na aba Desktop selecione a opção IP Configuration. Na janela que se abriu, vamos manter a opção de endereçamento estática, inserindo as seguintes informações: 172.16.4.2 (IPv4 address), 255.255.254.0 (Subnet mask) e 172.16.4.1 (default gateway).
+
+Teste a conectividade dos computadores com o servidor inserido usando o browser de navegação (opção disponível na aba Desktop ao clicar no PC). No campo URL, basta inserir o endereço IP do servidor (172.16.4.2)
+
+Observe que conseguimos acessar os dados armazenados no servidor a partir de qualquer PC conectado em nossa rede. Precisamos delimitar esse acesso para atender os requisitos iniciais definidos para o projeto da rede do Instituto Inovae!
+
+Resumo - implementando a lista de acesso
+
+
+
+Já inserimos um servidor em nossa rede, mas agora precisamos estabelecer algumas políticas de acesso.
+
+Podemos fazer isso criando e configurando listas de acesso. As listas de acesso ficam armazenadas no roteador, sendo consultadas por ele para verificação do tráfego. Temos duas opções de lista de acesso: extended (verificação é realizada em relação à origem e ao destino do tráfego) e standard (verificação é realizada apenas em relação à origem).
+
+No caso do servidor, teremos que fazer uma verificação da origem (apenas computadores da gerência e coordenação) e do destino (acesso ao servidor).
+
+Siga a sequência:
+
+Inicie a configuração clicando no roteador, aba CLI e entre no modo de configuração com os comandos enable e configure terminal. Na sequência, criamos a lista com o comando ip access-list extended gerencial. Repare que “gerencial” é o nome da lista.
+
+A lista foi criada e agora precisamos definir as autorizações. Usaremos os seguintes comandos:
+
+    permit tcp source wildcard 172.16.4.2 0.0.0.0
+        No campo source precisamos inserir o endereço dos computadores da gerência e coordenação. No wildcard, podemos inserir 0.0.0.0 para garantir uma boa precisão na verificação de origem. Teremos que incluir uma linha para cada permissão de acesso.
+
+    deny tcp 172.16.2.128 0.0.0.255 172.16.4.2 0.0.0.0
+        Estamos bloqueando todo o tráfego restante que porventura tente acessar o servidor.
+
+    permit ip any any
+        A leitura da lista é feita linha a linha, isso significa que, ao chegar nessa linha, o roteador vai liberar qualquer tráfego na rede.
+        Se o tráfego tivesse sido liberado ou negado anteriormente, o roteador pararia a verificação e já teria tomado a decisão.
+
+Vamos precisar excluir os endereços IP dos computadores da gerência e da coordenação do pool dhcp do roteador. Antes, clique nos respectivos PCs e mude o modo de endereçamento para estático. Utilize os seus endereços para configuração de permissão tcp na lista de acesso (primeiro comando da lista).
+
+No roteador, entre no modo de configuração e digite o comando ip dhcp excluded-address X.X.X.X. No campo “X.X.X.X” você deve inserir o endereço IP que será excluído. Repita o mesmo comando para cada endereço que deverá ser excluído do pool dhcp.
+
+Por fim, configure essa lista de acesso criada para que ela esteja vinculada às subinterfaces das vlans do administrativo e da pesquisa. Vamos entrar em cada uma dessas sub-interfaces no modo de configuração do roteador e inserir o comando ip access-group gerencial IN. Com isso, estamos vinculando a lista às subinterfaces e definindo que a verificação deve ser realizada na entrada de cada subinterface.
+
+Agora é hora de testar! Verifique se os demais PCs continuam tendo acesso à página web armazenada no servidor. Lembre-se que basta digitar o endereço IP do servidor no browser de cada PC para realização do teste.
+
+Uma vez que alteramos a política de acesso, somente os computadores da gerência e coordenação continuarão acessando a página web disponível no servidor. Os demais usuários não terão permissão de acesso e com isso a página não será exibida.
+
+

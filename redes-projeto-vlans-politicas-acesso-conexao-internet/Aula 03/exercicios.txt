@@ -1,0 +1,42 @@
+1. Protocolo TCP
+
+Para haver comunicação entre o navegador e um servidor web, utilizamos o protocolo TCP, voltado à conexão e responsável por garantir a entrega confiável e ordenada de dados entre dispositivos em uma rede de computadores.
+
+De que forma este protocolo funciona nesta situação?
+
+❌ "O TCP é um protocolo de transporte de melhor esforço e não garante a entrega de pacotes."
+➡️ TCP não é um protocolo de “melhor esforço” — essa é a característica do UDP. O TCP garante entrega confiável de pacotes através de confirmações (ACK) e retransmissões.
+
+❌ "O TCP é um protocolo sem conexão, portanto, não há necessidade de estabelecer uma conexão antes da transmissão de dados."
+➡️ TCP é um protocolo orientado à conexão. Ele realiza um processo de three-way handshake antes da transmissão, garantindo que ambos os lados estejam prontos para trocar dados.
+
+❌ "O TCP não suporta controle de congestionamento, o que pode resultar em perda de pacotes em redes ocupadas."
+➡️ TCP possui mecanismos de controle de congestionamento, como slow start, congestion avoidance e fast recovery, ajustando dinamicamente a taxa de envio conforme as condições da rede.
+
+✅ "O TCP é um protocolo orientado à conexão, o que significa que ele estabelece uma conexão antes da transmissão de dados."
+➡️ Correto. O TCP garante que os dados sejam enviados apenas após o estabelecimento de uma conexão confiável entre as partes.
+
+❌ "O TCP não permite o controle de fluxo, tornando-o ineficiente para redes congestionadas."
+➡️ TCP oferece controle de fluxo por meio do tamanho da janela (window size), evitando que o remetente envie mais dados do que o receptor é capaz de processar.
+
+2. Filtrando Tráfego
+
+Considere que um laboratório vinculado a uma universidade desenvolve processadores de computador. Esta instituição utiliza listas de controle de acesso (ACLs) em sua rede para auxiliar no processo de prevenção de vazamento de informações importantes.
+
+Qual seria a melhor estratégia para implementar estas listas de acesso?
+
+❌ "Configurar uma ACL padrão que bloqueie todo o tráfego de saída."
+➡️ ACLs padrão apenas filtram com base no endereço de origem e não são recomendadas para controle refinado de tráfego de saída. Além disso, bloquear todo o tráfego de saída prejudicaria comunicações legítimas.
+
+✅ "Configurar uma ACL estendida que bloqueie todo o tráfego de saída para destinos fora da rede do laboratório."
+➡️ Correto. ACLs estendidas permitem filtragem por endereço de origem, destino, protocolo e porta. Bloquear apenas o tráfego externo protege contra vazamento sem impactar a comunicação interna.
+
+❌ "Configurar uma ACL padrão que bloqueie todo o tráfego de entrada."
+➡️ Não é a abordagem ideal, pois também bloquearia acessos legítimos, como de servidores internos ou atualizações de sistema.
+
+❌ "Configurar uma ACL estendida que permite todo o tráfego de saída, exceto para determinados endereços IP sensíveis."
+➡️ Essa estratégia pode ser útil, mas menos eficaz do que bloquear todo o tráfego externo, pois exige identificar previamente todos os destinos sensíveis.
+
+❌ "Configurar uma ACL padrão que permite todo o tráfego de entrada, exceto para determinados endereços IP sensíveis."
+➡️ ACLs padrão não têm granularidade suficiente para esse tipo de controle, e a filtragem de entrada não resolve diretamente o problema de vazamento de informações para fora da rede.
+
