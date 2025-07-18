@@ -1,0 +1,91 @@
+Vimos que as listas de acesso (ACLs - Access Control Lists) são ferramentas muito importantes na configuração e implementação de redes, desempenhando um papel chave no gerenciamento do tráfego e controle de acesso. Que tal explorarmos um pouco mais a aplicação dessa ferramenta?
+
+Propomos aqui algumas atividades (não obrigatórias) para que você possa dar mais alguns passos na implementação e configuração de listas de acesso em uma rede. Que tal praticar!?
+
+Adote o projeto que foi construído nas atividades “Hora da prática” anteriores como base aqui também!
+
+Atividades
+Insira três servidores na rede da empresa para atuarem como repositórios de cada um dos seus departamentos.
+
+Configure uma VLAN dedicada aos servidores na rede.
+
+Atribua uma sub-rede exclusiva aos servidores de modo eficiente. Neste caso, adote o endereçamento estático.
+
+Implemente listas de acesso para cada um dos servidores no roteador, de forma que somente os computadores conectados em um dado departamento tenham acesso ao seu respectivo repositório (localizado no servidor dedicado ao departamento).
+
+Realize testes para verificar a operação das listas de acesso.
+
+Se precisar de ajuda para resolver as atividades, clique na seção “Opinião da pessoa instrutora” e acesse instruções para implementação das soluções.
+
+Opinião da pessoa instrutora
+Atividade 1
+No Cisco Packet Tracer, adicione três servidores à sua rede.
+
+Conecte cada servidor a um switch associado a um departamento específico da empresa.
+
+Atividade 2
+Acesse os switches associados aos servidores.
+
+Crie uma nova VLAN para os servidores. Por exemplo:
+
+bash
+Copiar
+Editar
+Switch(config)# vlan 20
+Switch(config-vlan)# name Servidores
+Atribua as portas conectadas aos servidores à VLAN recém-criada.
+
+Atividade 3
+Atribua uma sub-rede única para a VLAN de servidores com uma máscara de rede completa de 24 bits (255.255.255.0).
+Exemplo: VLAN de servidores → 192.168.1.0/24
+
+Verifique se esta sub-rede não está em conflito com outras sub-redes já utilizadas.
+
+Atividade 4
+Acesse o roteador na sua rede.
+
+Crie uma lista de acesso estendida para cada departamento, de forma que apenas os computadores daquele departamento possam acessar o servidor correspondente. Todos os demais acessos aos outros servidores devem ser negados.
+
+Exemplo de configuração (ajuste os IPs conforme o seu cenário real):
+
+bash
+Copiar
+Editar
+ip access-list extended ti
+ permit ip 172.16.0.0 0.0.1.255 host 192.168.1.2
+ deny ip any host 192.168.1.3
+ deny ip any host 192.168.1.4
+ deny ip any any
+
+ip access-list extended rh
+ permit ip 172.16.2.0 0.0.1.255 host 192.168.1.3
+ deny ip any host 192.168.1.2
+ deny ip any host 192.168.1.4
+ deny ip any any
+
+ip access-list extended adm
+ permit ip 172.16.4.0 0.0.1.255 host 192.168.1.4
+ deny ip any host 192.168.1.2
+ deny ip any host 192.168.1.3
+ deny ip any any
+Em seguida, aplique cada ACL na interface do roteador correspondente ao respectivo departamento, no sentido de entrada (in):
+
+bash
+Copiar
+Editar
+interface FastEthernet0/0.1
+ ip access-group ti in
+
+interface FastEthernet0/0.2
+ ip access-group rh in
+
+interface FastEthernet0/0.3
+ ip access-group adm in
+Atividade 5
+Experimente acessar os servidores de outros departamentos a partir de PCs em cada rede.
+
+Verifique se o acesso é bloqueado corretamente pelas ACLs.
+
+Caso algum acesso indevido ainda ocorra, revise a lista de acesso correspondente e corrija a lógica conforme o esperado.
+
+Utilize o modo de simulação no Packet Tracer para inspecionar os pacotes e garantir que o comportamento está correto.
