@@ -1,0 +1,74 @@
+
+
+A jornada de redes foi repleta de aprendizado até aqui, não é mesmo!? Começamos com uma pequena rede local, exploramos diferentes conceitos e técnicas e, por fim, implementamos a conexão dessa rede local com redes externas que formam essa tecnologia tão importante em nosso cotidiano: a internet.
+
+Para consolidar tudo o que você aprendeu ao longo dessa aula sobre conexão de redes locais com a internet, preparamos uma lista de atividades (não obrigatórias). Assim, você poderá explorar e analisar melhor todos os tópicos estudados. Bora praticar!?
+
+Adote o projeto que você foi construindo ao longo das demais atividades “Hora da prática” aqui no curso como base para implementar as atividades propostas.
+
+Atividades
+
+1. Adicione um novo roteador no projeto de modo a representar a rede do provedor de serviços de internet. Para facilitar, selecione um roteador semelhante ao modelo incluído anteriormente no projeto. Realize as conexões do novo roteador com o roteador da rede da empresa.
+
+2. Serão necessários dois endereços IP públicos para essa conexão. Sendo assim, defina os endereços de rede com suas respectivas máscaras de rede ajustadas de modo eficiente (lembre-se que endereços públicos são escassos).
+    
+3. Faça a alocação dos endereços IP definidos na atividade #2 nas interfaces dos roteadores realizando o teste de conectividade para verificar a conexão.
+    
+4. Implemente o protocolo NAT para tradução dos endereços IP privados usados internamente em na rede da empresa para o endereço IP público fornecido pelo provedor.
+    
+5. Verifique se há conexão dos computadores dos departamentos com a rede externa.
+
+Caso necessite de ajuda para resolver as atividades, basta clicar na seção “Opinião da pessoa instrutora” para acessar instruções sobre como implementar as soluções.
+
+
+Opinião do instrutor
+
+Atividade 1
+
+    No Cisco Packet Tracer, adicione um novo roteador ao projeto para representar a rede do provedor de serviços de Internet.
+    Conecte o novo roteador ao roteador da rede da empresa. Utilize cabos serial ou ethernet, dependendo da configuração do seu ambiente.
+    Verifique se é necessário adicionar interfaces adicionais ao novo roteador para a conexão com o roteador da empresa.
+    Selecione as portas adequadas nos roteadores e conecte-as.
+    Caso o roteador ISP possua interfaces de tipo diferente da interface utilizada para a conexão com o roteador da empresa (por exemplo, se a interface for ethernet no roteador ISP e serial no roteador da empresa), poderá ser necessário adicionar um módulo de interface correspondente.
+
+Atividade 2
+
+    Selecione dois endereços IP públicos fornecidos pelo provedor de serviços de Internet. Esses endereços devem ser únicos na Internet.
+    Ajuste as máscaras de rede de maneira eficiente para os endereços IP públicos selecionados. Geralmente, ao trabalhar com endereços IP públicos, a máscara é /30 para uma configuração ponto a ponto, o que permite apenas dois endereços IP utilizáveis. Exemplo: Endereço IP 1: 203.0.113.1/30 (rede: 203.0.113.0, broadcast: 203.0.113.3) Endereço IP 2: 203.0.113.2/30 (rede: 203.0.113.0, broadcast: 203.0.113.3)
+
+Atividade 3
+
+    Acesse os roteadores do projeto.
+    Atribua os endereços IP públicos nas interfaces dos roteadores conectadas à rede do ISP e à rede da empresa.
+    Realize testes de conectividade usando o ping diretamente no CLI dos roteadores para verificar a comunicação entre os dois dispositivos.
+
+Atividade 4
+
+    Acesse o roteador da rede da empresa.
+    Configure o Protocolo de Tradução de Endereços de Rede (NAT) para traduzir os endereços IP privados internos para o endereço IP público fornecido pelo provedor:
+
+    RoteadorEmpresa(config)# ip nat inside source list 1 interface <interface_externa> overload
+
+Substitua <interface_externa> pelo nome da interface externa do roteador da empresa.
+Crie uma lista de acesso (ACL) para definir os endereços IP internos que serão traduzidos:
+
+RoteadorEmpresa(config)# access-list 1 permit <rede_interna> <máscara_interna>
+
+Substitua <rede_interna> pela rede interna da empresa e <máscara_interna> pela máscara de sub-rede interna.
+Aplique a ACL na interface interna do roteador:
+
+RoteadorEmpresa(config-if)# interface <interface_interna>
+RoteadorEmpresa(config-if)# ip nat inside
+
+Aplique a ACL na interface externa do roteador:
+
+RoteadorEmpresa(config-if)# interface <interface_externa>
+RoteadorEmpresa(config-if)# ip nat outside
+
+    Substitua <interface_interna> e <interface_externa> pelos nomes reais das interfaces interna e externa do roteador da empresa.
+
+Atividade 5
+
+    Verifique se há conectividade entre os computadores dos departamentos e o roteador do ISP.
+    Se necessário, analise o tráfego usando o modo de simulação no Packet Tracer para diagnosticar e corrigir eventuais problemas de configuração.
+
