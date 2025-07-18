@@ -1,0 +1,64 @@
+1. Meios físicos de transmissão
+
+Em um laboratório de ciência de dados, diversos dispositivos estão conectados a um servidor central, que é utilizado para processamento de grandes volumes de dados e que pode sofrer com interferências eletromagnéticas. Todos os dispositivos precisam transmitir e receber dados do servidor de maneira rápida e eficiente.
+
+Qual seria o meio físico de transmissão mais adequado para esta situação, levando em consideração o desempenho, a confiabilidade e a taxa de transferência de dados?
+
+❌ Par trançado sem blindagem (UTP).
+➡️ O cabo UTP é comumente usado para redes locais, mas não é o meio de transmissão mais eficaz para o tráfego intenso de dados de um laboratório de ciência de dados. Ele tem uma taxa de transmissão de dados mais lenta em comparação à fibra óptica e é suscetível a interferências eletromagnéticas.
+
+✅ Fibra óptica.
+➡️ A fibra óptica é o meio de transmissão mais rápido disponível e é capaz de transmitir dados a longas distâncias com pouca ou nenhuma perda de sinal. Além disso, é altamente resistente a interferências eletromagnéticas, o que garante alta confiabilidade para o tráfego intenso de dados.
+
+❌ Conexão sem fio (Wi-Fi).
+➡️ Embora ofereça conveniência, o Wi-Fi não apresenta a mesma velocidade nem confiabilidade da fibra óptica. Além disso, pode ser afetado por interferências e obstáculos físicos, impactando a taxa de transferência.
+
+❌ Cabo coaxial.
+➡️ Apesar de oferecer velocidade razoável, o cabo coaxial não alcança o desempenho da fibra óptica e é mais vulnerável a interferências eletromagnéticas, comprometendo a confiabilidade.
+
+❌ Linha discada.
+➡️ É uma tecnologia obsoleta com velocidades muito baixas, totalmente inadequada para o processamento intenso de dados em um laboratório.
+
+
+2. Distribuição de endereços IP
+
+Em uma instituição de ensino superior, o departamento de inteligência artificial precisa dimensionar a alocação de endereços IP para sua rede, que contém 500 dispositivos. Como o recurso de endereçamento IP é escasso e pago, é importante fazer um dimensionamento eficiente.
+
+Utilizando-se de uma sub-rede de classe B, qual seria a máscara de sub-rede mais adequada para esse cenário, considerando a utilização eficiente dos endereços IP disponíveis?
+
+❌ 255.255.0.0
+➡️ Essa é a máscara padrão para uma rede classe B, que oferece até 65.534 endereços para hosts. É um desperdício grande para apenas 500 dispositivos, pois aloca muitos endereços não utilizados.
+
+❌ 255.255.255.128
+➡️ Essa máscara suporta até 126 endereços de host, o que é insuficiente para os 500 dispositivos necessários.
+
+✅ 255.255.254.0
+➡️ Essa máscara (prefixo /23) permite até 510 endereços de host, suficiente para os 500 dispositivos. Usa a fórmula 2^(32-23) - 2 = 510 hosts, sendo uma escolha eficiente para o cenário.
+
+❌ 255.255.255.0
+➡️ Suporta até 254 endereços de host, insuficiente para acomodar os 500 dispositivos.
+
+❌ 255.255.252.0
+➡️ Essa máscara (prefixo /22) permite até 1022 hosts, o que é suficiente, mas gera desperdício de endereços, pois é maior do que o necessário para 500 dispositivos.
+
+
+3. Conversão de endereços IP
+
+O FabLab aberto de uma cidade precisa configurar NAT (Network Address Translation) para mapear um endereço IP privado (192.168.1.0) para um endereço IP público (203.0.113.0) usando um roteador Cisco.
+
+Qual comando seria apropriado para configurar isso?
+
+✅ ip nat inside source static 192.168.1.0 203.0.113.0
+➡️ Correto. Este comando configura uma tradução estática de IP, associando permanentemente o IP privado 192.168.1.0 ao IP público 203.0.113.0. Isso é útil quando se deseja que um host interno tenha sempre o mesmo IP público visível externamente.
+
+❌ ip nat outside source static 203.0.113.0 192.168.1.0
+➡️ Incorreto. Este comando inverte o sentido esperado da tradução. outside source não é usado nesse tipo de mapeamento de IP interno para externo.
+
+❌ ip nat inside source dynamic 192.168.1.0 203.0.113.0
+➡️ Incorreto. Este comando configuraria NAT dinâmico, mas o enunciado pede tradução estática. Além disso, esse uso requer configuração de ACL e pool de endereços, o que não foi feito aqui.
+
+❌ ip nat source static 203.0.113.0 192.168.1.0
+➡️ Incorreto. Está faltando o escopo inside ou outside. A sintaxe correta para esse tipo de NAT requer ip nat inside source static.
+
+❌ ip nat inside destination static 192.168.1.0 203.0.113.0
+➡️ Incorreto. Esse comando configura tradução de destino, e não de origem, que é o necessário para permitir que um dispositivo interno seja acessado externamente por um IP público.

@@ -1,0 +1,51 @@
+Resumo aula 04 - conexão com a internet
+
+
+
+Para começar, vamos inserir um novo roteador em nosso projeto que irá operar como roteador do provedor de serviços de internet (ISP - Internet Service Provider). Podemos inserir o mesmo modelo Cisco 1841 que estamos usando na rede do Instituto Inovae.
+
+O link fornecido pelo provedor, em geral, possui uma tecnologia específica para transmissão de dados, diferente da tecnologia que usamos em nossas redes locais. Dessa forma, precisamos realizar a conversão de sinais a partir de um cabo coaxial, fibra ou telefônico, para uma conexão ethernet.
+
+Há pouco tempo era comum termos no ponto de demarcação (limite entre a rede interna de uma organização e a rede do provedor de serviços) um dispositivo conhecido como modem (CSU-DSU) que atuava exclusivamente nesse processo de integração de redes (camada física da rede).
+
+Atualmente, os próprios roteadores já possuem uma placa que realiza essa conversão. No entanto, ainda é comum nos diagramas de redes o uso de modem com conexão serial para ilustrar essa demarcação da conexão externa de uma rede local. Aliás, nos roteadores que estamos usando, precisamos fazer a inclusão dessa placa.
+
+Devemos então clicar em cada roteador da rede, clicar na aba Physical e inserir a placa WIC-1T (placa serial) em cada um deles. Para inserir a placa, clique na opção do menu lateral e solte no centro dos espaços vazios dos roteadores.
+
+Atente ao fato que os roteadores necessitam estar desligados para realizar essa operação. No roteador que estamos trabalhando na rede do Instituto Inovae, antes de desligarmos para inclusão da placa serial, precisamos salvar todas as configurações que implementamos até agora. Clique no roteador, clique na aba CLI, digite o comando enable e, na sequência, insira o comando write. Pronto, agora as configurações já estão salvas! Já podemos desligá-lo para inclusão da placa adicional.
+
+Para fazer a conexão entre os roteadores, vamos selecionar o cabo serial DCE na opção connections do menu inferior. Esse cabo é usado na comunicação de dados, pois permite a definição da frequência de clock e evita erros de transmissão. Nesse caso, clicamos primeiro no roteador do ISP, pois ele será responsável pela definição do clock.
+
+Agora, será necessário realizarmos a configuração dos endereços IP das interfaces de conexão dos roteadores.
+
+Vamos clicar no roteador do Instituto Inovae e entrar no modo de configuração na aba CLI. Acessamos a interface serial usando o comando interface serial 0/1/0 e atribuímos um endereço IP para essa interface digitando o comando ip address 150.1.1.1 255.255.255.252. Inserimos um endereço IP público fornecido pelo ISP ao Instituto Inovae.
+
+Clique então no roteador do ISP e acesse seu modo de configuração. Lembre-se de responder no à opção de realizar a configuração no modo diálogo. Acesse a interface serial digitando ** interface serial 0/1/0** e defina o seu endereço IP com o comando ip address 150.1.1.2 255.255.255.252.
+
+Para finalizar o processo de configuração, precisamos configurar o protocolo NAT que irá realizar a tradução dos endereços IP privados usados internamente na rede do Instituto Inovae para o endereço IP público fornecido pelo provedor.
+
+Começamos criando uma lista de acesso no roteador do Instituto Inovae, acessando o seu modo de configuração e digitando o comando ip acess-list standard NAT. Observe que criamos uma lista standard, pois nosso foco é a tradução dos endereços, não há qualquer tipo de restrição de acesso.
+
+Na sequência, vamos definir a tradução da lista usando o comando permit 172.16.0.0 0.0.255.255. Assim, estabelecemos que todos os endereços privados da nossa rede serão traduzidos para o IP público.
+
+Como já vimos anteriormente na implementação de listas de acesso, precisamos vincular a lista criada às interfaces do roteador e definir o vínculo como inside ou outside. As interfaces internas serão configuradas como inside, enquanto a interface serial externa será configurada como outside. Usamos a seguinte sequência de comando no modo de configuração do roteador do Instituto Inovae:
+
+    interface FastEthernet 0/0.1
+    ip nat inside
+    exit
+    interface FastEthernet 0/0.1
+    ip nat inside
+    exit
+    interface serial 0/1/0
+    ip nat outside
+    exit
+
+Por fim, vamos vincular essa lista de acesso que criamos para possibilitar a efetiva tradução dos endereços. Para isso, usamos o seguinte comando:
+
+config# ip nat inside source list NAT interface serial 0/1/0 overload
+
+O overload permite que todos os endereços IP internos da nossa rede possam usar o único IP público disponível (150.1.1.2) de modo simultâneo.
+
+Chegou o momento de testar se a tradução está sendo realizada testando a conectividade um dos computadores do Instituto Inovae com o provedor de serviços. Use o comando ping 150.1.1.1 no prompt de comando do PC.
+
+
