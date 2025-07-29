@@ -1,0 +1,36 @@
+Nessa atividade, vamos nos concentrar em uma tarefa de pesquisa: investigar como a Inteligência Artificial (IA) está sendo aplicada no cotidiano das pessoas e como ela pode facilitar suas vidas.
+
+Sua principal tarefa é refletir sobre o uso dessas tecnologias e analisar os diferentes tipos de IA que as pessoas utilizam regularmente. Você vai identificar como a IA evoluiu ao longo do tempo, entender as tecnologias por trás de cada aplicação e como elas impactam a experiência das diferentes pessoas usuárias.
+
+Sendo assim, pesquise e liste 3 exemplos de IA que são comumente usados pelas pessoas no dia a dia. Para cada exemplo, busque respostas e reflita sobre os seguintes pontos:
+
+    Tecnologia de IA utilizada
+        Qual tecnologia de IA está por trás dessa aplicação (ex.: Aprendizado de Máquina, Processamento de Linguagem Natural, Visão Computacional)?
+
+    Facilidade e Impacto na Experiência
+        Como a IA facilita a vida das pessoas ao usar esse serviço? Quais aspectos melhoram a experiência do usuário?
+
+    Evolução da IA
+        Como a tecnologia de IA evoluiu ao longo do tempo para tornar essas aplicações mais eficientes e precisas?
+
+
+1. Jogos com IA (ex: xadrez, jogos de estratégia)
+Tecnologia usada: Aprendizado de Máquina, Árvores de Decisão.
+
+Facilidade e impacto: Permite jogar contra o computador, ajusta a dificuldade, ajuda no aprendizado.
+
+Evolução: De regras fixas para IA que aprende sozinha, como o AlphaZero, que supera humanos.
+
+2. Plataformas de Recomendação (Netflix, Spotify, YouTube)
+Tecnologia usada: Machine Learning, Sistemas de Recomendação.
+
+Facilidade e impacto: Sugere conteúdos personalizados, economiza tempo, melhora a experiência.
+
+Evolução: De sugestões genéricas para recomendações precisas baseadas no comportamento do usuário.
+
+3. Assistentes Virtuais / IA Generativa (ChatGPT, Alexa, Google Assistente)
+Tecnologia usada: Processamento de Linguagem Natural (PLN), Redes Neurais, Transformers.
+
+Facilidade e impacto: Responde perguntas, ajuda em tarefas, gera textos e ideias.
+
+Evolução: De respostas pré-programadas para IA capaz de manter conversas e criar conteúdo original.
