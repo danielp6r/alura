@@ -1,0 +1,27 @@
+Imagine que você foi contratado para desenvolver uma solução baseada em Inteligência Artificial para otimizar o uso de recursos em um hospital público de grande porte.
+
+A IA deve gerenciar a alocação de leitos, a programação de cirurgias e a distribuição de profissionais de saúde (médicos, enfermeiros, técnicos), levando em consideração variáveis como a demanda por atendimentos, a gravidade dos casos, os horários das consultas e cirurgias, e as condições dos pacientes.
+
+Para o planejamento desta demanda:
+
+Identifique os desafios principais deste problema
+
+        Quais são as variáveis mais críticas para otimizar a alocação de recursos neste ambiente?
+Gravidade dos casos, tempo de espera, disponibilidade de leitos, agenda dos profissionais, tipo de atendimento necessário, urgência da cirurgia, e restrições legais ou operacionais.
+
+        Quais dificuldades você pode prever ao tentar criar uma solução inteligente?
+Dados incompletos ou desatualizados, variabilidade imprevisível da demanda, conflitos entre prioridades, restrições legais e éticas, resistência da equipe, dificuldade na definição de critérios objetivos, e necessidade de resposta em tempo real.
+
+    Explore estratégias inteligentes
+        Se você fosse implementar um agente reativo, como ele lidaria com o problema de alocação de recursos no hospital? Quais seriam as vantagens e limitações dessa abordagem?
+Ele reagiria a eventos imediatos, como chegada de pacientes ou liberação de leitos, realocando recursos conforme a necessidade. A vantagem é a resposta rápida a emergências. A limitação é a falta de planejamento, podendo causar alocações ineficientes e sobrecarga a longo prazo.
+
+        Se você fosse usar um agente baseado em objetivos, como ele planejararia a alocação de recursos de forma mais eficiente? Quais seriam os possíveis obstáculos dessa abordagem?
+Ele definiria metas como minimizar tempo de espera e priorizar casos graves, planejando a alocação para atingir esses objetivos. Os obstáculos incluem dificuldade de adaptação a mudanças rápidas e conflito entre objetivos concorrentes.
+
+        Considerando um agente baseado em utilidade, como ele avaliaria as diferentes alternativas de alocação de recursos? O que poderia ser um critério de utilidade eficaz nesse contexto?
+Ele avaliaria as alternativas calculando uma função que combina fatores como gravidade dos casos, tempo de espera e equilíbrio da carga de trabalho. Um critério eficaz seria maximizar a saúde dos pacientes reduzindo o tempo de espera e evitando sobrecarga dos profissionais
+
+    Reflita sobre o caso
+        Considerando as alternativas de agentes reativos, baseados em objetivos e utilitários, qual estratégia você acredita que seria a mais eficaz para resolver este problema?
+A estratégia mais eficaz seria combinar agentes baseados em objetivos para planejamento estratégico, agentes reativos para respostas imediatas e agentes utilitários para otimização das decisões.
